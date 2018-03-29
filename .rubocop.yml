@@ -116,6 +116,6 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
 
 # Do not suggest to rename `has_x?` to `x?`
-Style/PredicateName:
+Naming:
   Enabled: false
 
