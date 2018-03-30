@@ -1,3 +1,4 @@
+
 # https://rubocop.readthedocs.io/
 AllCops:
   Include:
@@ -26,6 +27,10 @@ Style/SignalException:
 # Make literal hashes act like arrays
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented_relative_to_receiver
 
 # Disable the documentation requirement
 Style/Documentation:
