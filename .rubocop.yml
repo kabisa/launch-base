@@ -9,11 +9,15 @@ AllCops:
 
 # Longer line length
 Metrics/LineLength:
-  Max: 140
+  Max: 120
 
-# Methods can be 20 lines long
+Metrics/ClassLength:
+  Max: 150
+  CountComments: false
+
+# Methods can be 15 lines long
 Metrics/MethodLength:
-  Max: 10
+  Max: 15
 
 # Prefer raise over fail
 Style/SignalException:
@@ -29,6 +33,24 @@ Style/Documentation:
 
 # Allow the usage of begin blocks
 Style/BeginBlock:
+  Enabled: false
+
+# Allow usage of regular array notation, which is familiar to non rubyists as well
+Style/WordArray:
+  Enabled: true
+  EnforcedStyle: brackets
+
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
+
+# Enforce nested module/class notation.
+# Note: We decided this may be disabled for controllers, add an rubocop file in the controller folder, that inherits from this file and disable the rule if preferred
+Style/ClassAndModuleChildren:
+  Enabled: true
+
+# Disable check for emptymethod. It would enforce semicolons otherwise, and we are allergic to those
+Style/EmptyMethod:
   Enabled: false
 
 # Force Ruby 1.9 syntax and do not mix key types
@@ -60,8 +82,7 @@ Style/TernaryParentheses:
   EnforcedStyle: require_parentheses_when_complex
 
 Style/StringLiterals:
-  # Enforcing double quotes reduces the times where you need to change them
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
   # Use consistent quotes when multi-lining strings
   ConsistentQuotesInMultiline: true
 
@@ -72,7 +93,7 @@ Style/FrozenStringLiteralComment:
 Style/SymbolLiteral:
   Enabled: false
 
-# We usally only flatten only level so we can enable this feature
+# We usually only flatten only level so we can enable this feature
 Performance/FlatMap:
   EnabledForFlattenWithoutParams: true
 
@@ -95,5 +116,6 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
 
 # Do not suggest to rename `has_x?` to `x?`
-Naming/PredicateName:
+Naming:
   Enabled: false
+
