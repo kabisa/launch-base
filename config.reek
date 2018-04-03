@@ -43,3 +43,8 @@ IrresponsibleModule:
 DuplicateMethodCall:
   enabled: true
   max_calls: 2
+
+# Allow modules named "V1", because that is fairly common for Rails apps to have
+UncommunicativeModuleName:
+  accept:
+    - V1
