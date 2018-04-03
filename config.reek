@@ -1,9 +1,11 @@
 # Do not require a descriptive comment for classes and modules
+# See: https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md
 IrresponsibleModule:
   enabled: false
 
 # Allow 2 occurrences of a method call. When adding the third, it should be
 # extracted to a variable or method.
+# See: https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md
 #
 # == Examples:
 #
