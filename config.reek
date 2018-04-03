@@ -1,0 +1,43 @@
+# Do not require a descriptive comment for classes and modules
+IrresponsibleModule:
+  enabled: false
+
+# Allow 2 occurrences of a method call. When adding the third, it should be
+# extracted to a variable or method.
+#
+# == Examples:
+#
+# Allowed:
+#
+#   def search
+#     if params[:query].present?
+#       @results = Model.search(params[:query])
+#     end
+#   end
+#
+# Not allowed:
+#
+#   def search
+#     if params[:query].present?
+#       @results = Model.search(params[:query])
+#       session[:last_search_query] = params[:query]
+#     end
+#   end
+#
+# Refactor to:
+#
+#   def search
+#     if search_query.present?
+#       @results = Model.search(search_query)
+#       session[:last_search_query] = search_query
+#     end
+#   end
+#
+#   private
+#
+#   def search_query
+#     params[:query]
+#   end
+DuplicateMethodCall:
+  enabled: true
+  max_calls: 2
