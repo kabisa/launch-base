@@ -14,10 +14,6 @@
   "extends": "airbnb",
 
   "rules": {
-    "max-len": [
-      2,    // treat max-len violations as errors
-      140,  // allow 140 characters per line
-      2     // assume 2 space indentation
-    ]
+    "max-len": [2, 140, 2]
   }
 }
