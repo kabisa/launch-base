@@ -34,7 +34,7 @@ module Foo
       end
 
       def variable_alignment
-        user = # rubocop:disable UselessAssignment
+        _user =
           User
             .where(name: 'foobar')
             .joins(:badge)
