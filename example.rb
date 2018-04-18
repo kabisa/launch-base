@@ -33,6 +33,13 @@ module Foo
           .order_by(name: :asc)
       end
 
+      def variable_alignment
+        _user =
+          User
+            .where(name: 'foobar')
+            .joins(:badge)
+      end
+
       def long_method_2
         method_call
         method_call_1

@@ -27,6 +27,10 @@ Style/SignalException:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: indented_relative_to_receiver
+
 # Disable the documentation requirement
 Style/Documentation:
   Enabled: false
