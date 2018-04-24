@@ -48,3 +48,8 @@ DuplicateMethodCall:
 UncommunicativeModuleName:
   accept:
     - V1
+
+# Allow Rails helpers that do not depend on instance state
+"app/helpers":
+  UtilityFunction:
+    enabled: false
