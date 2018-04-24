@@ -31,6 +31,13 @@ module Foo
           .joins(:badge)
           .group_by(:badge_count)
           .order_by(name: :asc)
+
+        _user =
+          User
+            .where(name: 'foobar')
+            .joins(:badge)
+            .group_by(:badge_count)
+            .order_by(name: :asc)
       end
 
       def variable_alignment

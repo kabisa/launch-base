@@ -123,3 +123,5 @@ Metrics/BlockLength:
 Naming:
   Enabled: false
 
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
