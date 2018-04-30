@@ -6,6 +6,7 @@
   "repository": "git@github.com:kabisa/launch-base.git",
   "author": "Martijn Versluis <martijnversluis@users.noreply.github.com>",
   "license": "MIT",
+
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
@@ -13,5 +14,9 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0"
+  },
+
+  "scripts": {
+    "test-eslint": "eslint -c templates/linters/.eslintrc.json test/linters/es6.js"
   }
 }
