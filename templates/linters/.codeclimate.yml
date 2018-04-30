@@ -40,7 +40,7 @@ checks:
 # and https://docs.codeclimate.com/docs/list-of-engines
 plugins:
   brakeman:
-    enabled: false
+    enabled: true
   bundler-audit:
     enabled: true
   csslint:
@@ -50,7 +50,7 @@ plugins:
   eslint:
     enabled: true
     config:
-      config: templates/linters/.eslintrc.json
+      config: .eslintrc.json
       extensions:
       - .es6
       - .js
@@ -63,12 +63,10 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-    config:
-      file: templates/linters/.rubocop.yml
   reek:
     enabled: true
     config:
-      config: templates/linters/config.reek
+      config: config.reek
   scss-lint:
     enabled: true
   shellcheck:
