@@ -4,6 +4,7 @@ AllCops:
     - '**/Gemfile'
     - '**/Rakefile'
     - config.ru
+     - '**/*.gemspec'
   Exclude:
     - db/schema.rb
 
