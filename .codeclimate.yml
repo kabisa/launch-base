@@ -50,7 +50,7 @@ plugins:
   eslint:
     enabled: true
     config:
-      config: templates/linters/.eslintrc.json
+      config: .eslintrc.json
       extensions:
       - .es6
       - .js
@@ -64,11 +64,9 @@ plugins:
   rubocop:
     enabled: true
     config:
-      file: templates/linters/.rubocop.yml
+      file: .rubocop.yml
   reek:
     enabled: true
-    config:
-      config: templates/linters/config.reek
   scss-lint:
     enabled: true
   shellcheck:
