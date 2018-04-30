@@ -1,0 +1,14 @@
+sudo: required
+matrix:
+  include:
+    - language: ruby
+      install:
+        - bundle install --jobs=3 --retry=3
+      script:
+        - bundle exec rubocop -c templates/linters/.rubocop.yml test/linters/ruby.rb
+        - bundle exec reek -c templates/linters/config.reek test/linters/ruby.rb
+    - language: node_js
+      node_js:
+        - "8"
+      script:
+        -  ./node_modules/.bin/eslint -c templates/linters/.eslintrc.json test/linters/es6.js
