@@ -37,6 +37,10 @@ say 'Adding .ruby-version file to project'
 remove_file '.ruby-version'
 copy_file '.ruby-version'
 
+say 'Adding README.md file to project'
+remove_file 'README.md'
+copy_file 'README.md'
+
 remove_file 'config/database.yml'
 template 'database.erb', 'config/database.yml'
 
