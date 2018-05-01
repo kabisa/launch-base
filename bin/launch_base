@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require 'pathname'
+require 'open3'
+
+source_path = (Pathname.new(__FILE__).dirname + '../lib').expand_path
+$LOAD_PATH << source_path
+
+require 'launch_base'
+
+if ARGV.empty?
+  puts 'Please provide a path for the new application'
+  exit 0
+elsif ['-v', '--version'].include? ARGV[0]
+  puts LaunchBase::VERSION
+  exit 0
+end
+
+app_name = ARGV[0]
+template_file = ARGV[1] || 'templates/launch_base_default_template.rb'
+puts "Generating your rails app called #{app_name}"
+
+Open3.popen3("rails new #{ARGV[0]} -m #{template_file}") do |stdout, stderr, status, thread|
+  while line=stderr.gets do
+    puts line
+  end
+end
