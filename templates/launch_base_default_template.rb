@@ -1,6 +1,6 @@
 # Launch Base default template file
 def source_paths
-  Array(super) + [__dir__]
+  [__dir__] + Array(super)
 end
 
 say 'Removing and setting up Gemfile for new project'
@@ -35,11 +35,11 @@ end
 
 say 'Adding .ruby-version file to project'
 remove_file '.ruby-version'
-copy_file '.ruby-version'
+copy_file '.ruby-version', '.ruby-version'
 
 say 'Adding README.md file to project'
 remove_file 'README.md'
-copy_file 'README.md'
+copy_file 'README.md', 'README.md'
 
 remove_file 'config/database.yml'
 template 'database.erb', 'config/database.yml'
@@ -49,7 +49,7 @@ after_bundle do
   bundle_command 'exec rails g rspec:install'
 
   remove_file '.rspec'
-  copy_file '.rspec'
+  copy_file '.rspec', '.rspec'
 
   run 'mkdir -p spec/features \
              spec/models \
