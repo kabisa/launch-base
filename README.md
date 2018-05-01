@@ -1,4 +1,4 @@
-# LaunchBase [![Build Status](https://travis-ci.org/kabisa/launch-base.svg?branch=master)](https://travis-ci.org/kabisa/launch-base) [![Maintainability](https://api.codeclimate.com/v1/badges/f563fdb89d5509e4e8f3/maintainability)](https://codeclimate.com/github/kabisa/launch-base/maintainability)
+# Kabisa LaunchBase :rocket: [![Build Status](https://travis-ci.org/kabisa/launch-base.svg?branch=master)](https://travis-ci.org/kabisa/launch-base) [![Maintainability](https://api.codeclimate.com/v1/badges/f563fdb89d5509e4e8f3/maintainability)](https://codeclimate.com/github/kabisa/launch-base/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f563fdb89d5509e4e8f3/test_coverage)](https://codeclimate.com/github/kabisa/launch-base/test_coverage)
 
 ## Installation
 
