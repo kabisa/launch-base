@@ -1,4 +1,3 @@
-require_relative '../lib/Launch_base/version'
 # Launch Base default template file
 def source_paths
   Array(super) + [__dir__]
@@ -9,8 +8,7 @@ remove_file 'Gemfile'
 run 'touch Gemfile'
 add_source 'https://rubygems.org'
 
-gem 'rails', LaunchBase::RAILS_VERSION.to_s
-
+gem 'rails', '5.2.0'
 gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
