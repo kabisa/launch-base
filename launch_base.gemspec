@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Martijn Versluis', 'Tjaco Oostdijk']
   spec.email         = ['martijn@kabisa.nl', 'tjaco@kabisa.nl']
 
-  spec.summary       = %q{A Rails template with Kabisa defaults}
+  spec.summary       = 'A Rails template with Kabisa defaults'
   spec.homepage      = 'https://github.com/kabisa/launch-base'
   spec.license       = 'MIT'
 
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.bindir = 'bin'
-  spec.executables   = []
+  spec.executables   = ['launch_base']
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.16'
@@ -35,4 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'fuubar', '~> 2.3'
   spec.add_development_dependency 'rubocop', '~> 0.55'
   spec.add_development_dependency 'reek', '~> 4.8'
+  spec.add_development_dependency 'pry'
+
+  spec.add_dependency 'thor', '~> 0.20'
 end
