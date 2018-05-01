@@ -24,7 +24,7 @@ module LaunchBaseTestHelpers
 
   def generate_new_app
     create_tmp_directory
-    `bin/launch_base #{project_path}`
+    `rails new #{project_path} -m templates/Launch_base_default_template.rb`
   end
 
   def remove_generated_app
