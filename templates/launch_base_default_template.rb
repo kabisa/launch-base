@@ -68,6 +68,5 @@ after_bundle do
 
   rake 'db:setup'
   rake 'db:migrate'
-  run 'rspec spec'
 end
 
