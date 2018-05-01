@@ -4,6 +4,8 @@ SimpleCov.start
 require 'bundler/setup'
 require 'launch_base'
 
+Dir[Pathname.new(__dir__).join('support/**/*.rb')].each { |f| require f }
+
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
   config.disable_monkey_patching!
