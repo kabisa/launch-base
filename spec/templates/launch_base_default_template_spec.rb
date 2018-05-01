@@ -14,7 +14,7 @@ RSpec.describe "App Generator" do
     expect(File).to exist("#{project_path}/Gemfile")
   end
 
-  it "uses custom Gemfile" do
+  it 'uses custom Gemfile' do
     gemfile_file = File.read("#{project_path}/Gemfile")
 
     expect(gemfile_file)
