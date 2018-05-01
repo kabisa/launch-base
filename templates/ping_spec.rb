@@ -1,7 +1,7 @@
-describe "/ping" do
+describe '/ping' do
   it "renders 'pong'" do
-    get "/ping"
+    get '/ping'
     expect(response).to be_success
-    expect(response.body).to eq "pong"
+    expect(response.body).to eq 'pong'
   end
 end

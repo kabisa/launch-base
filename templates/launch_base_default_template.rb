@@ -57,11 +57,10 @@ after_bundle do
   run 'rm -rf test'
   copy_file 'ping_spec.rb', 'spec/requests/ping_spec.rb'
 
-  insert_into_file 'config/routes.rb', after:  "Rails.application.routes.draw do\n" do
+  insert_into_file 'config/routes.rb', after: "Rails.application.routes.draw do\n" do
     "  get '/ping', to: ->(_env) { [200, {}, ['pong']]}"
   end
 
   rake 'db:setup'
   rake 'db:migrate'
 end
-
