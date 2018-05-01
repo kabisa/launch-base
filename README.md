@@ -1,4 +1,4 @@
-# LaunchBase
+# LaunchBase [![Maintainability](https://api.codeclimate.com/v1/badges/f563fdb89d5509e4e8f3/maintainability)](https://codeclimate.com/github/kabisa/launch-base/maintainability)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/launch_base`. To experiment with that code, run `bin/console` for an interactive prompt.
 
