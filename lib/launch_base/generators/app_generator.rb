@@ -2,8 +2,8 @@ require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
 
 module LaunchBase
+  # Overwrite certain things in the Rails AppGenerator
   class AppGenerator < Rails::Generators::AppGenerator
-
     def finish_template
       invoke :launch_base_customization
       super

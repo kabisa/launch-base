@@ -1,8 +1,8 @@
 module LaunchBase
+  # Customise the Rails AppBuilder
   class AppBuilder < Rails::AppBuilder
-
     def gemfile
-      template "Gemfile.erb", "Gemfile"
+      template 'Gemfile.erb', 'Gemfile'
     end
 
     def replace_gemfile
