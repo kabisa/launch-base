@@ -1,3 +1,4 @@
+# From https://github.com/erikhuda/thor/blob/master/spec/helper.rb
 def capture(stream)
   begin
     stream = stream.to_s
