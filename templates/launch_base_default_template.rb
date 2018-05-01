@@ -39,7 +39,6 @@ copy_file '.ruby-version'
 
 remove_file 'config/database.yml'
 template 'database.erb', 'config/database.yml'
-
 after_bundle do
   run 'spring stop'
   generate 'rspec:install'
@@ -47,7 +46,7 @@ after_bundle do
   remove_file '.rspec'
   copy_file '.rspec'
 
-  run 'mkdir spec/features \
+  run 'mkdir -p spec/features \
              spec/models \
              spec/factories \
              spec/requests \
@@ -61,6 +60,7 @@ after_bundle do
     "  get '/ping', to: ->(_env) { [200, {}, ['pong']]}"
   end
 
-  rake 'db:setup'
+  rake 'db:drop'
+  rake 'db:create'
   rake 'db:migrate'
 end
