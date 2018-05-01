@@ -7,7 +7,7 @@ describe 'App Generator' do
     gemfile_file = File.read("#{project_path}/Gemfile")
 
     expect(gemfile_file)
-      .to match(/gem 'rails', '#{LaunchBase::RAILS_VERSION}'/)
+      .to match(/gem 'rails', '5.2.0'/)
   end
 
   it 'sets the correct ruby version in the .ruby-version file' do
