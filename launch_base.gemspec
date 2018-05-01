@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.bindir = 'bin'
-  spec.executables   = []
+  spec.executables   = ['launch_base', 'setup']
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.16'
@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'fuubar', '~> 2.3'
   spec.add_development_dependency 'rubocop', '~> 0.55'
   spec.add_development_dependency 'reek', '~> 4.8'
+  spec.add_dependency 'rails', LaunchBase::RAILS_VERSION
 end

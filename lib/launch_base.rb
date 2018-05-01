@@ -1,4 +1,3 @@
 require 'launch_base/version'
-
-module LaunchBase
-end
+require 'launch_base/generators/app_generator'
+require 'launch_base/app_builder'
