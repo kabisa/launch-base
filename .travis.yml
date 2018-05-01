@@ -5,9 +5,7 @@ matrix:
       install:
         - bin/setup
       script:
-        - bundle exec rubocop -c templates/linters/.rubocop.yml test/linters/ruby.rb
-        - bundle exec reek -c templates/linters/config.reek test/linters/ruby.rb
-        - bundle exec rake test && bundle exec codeclimate-test-reporter
+        - bin/ci
     - language: node_js
       node_js:
         - "8"

@@ -1,15 +1,4 @@
-require 'spec_helper'
-
-RSpec.describe "App Generator" do
-
-  before(:all) do
-    generate_new_app
-  end
-
-  after(:all) do
-    remove_generated_app
-  end
-
+describe 'App Generator' do
   it 'creates the root folder for the new application' do
     expect(File).to exist("#{project_path}/Gemfile")
   end
