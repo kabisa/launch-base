@@ -1,3 +1,4 @@
 /.bundle/
+/coverage/
 /node_modules
 .rspec_status
