@@ -21,7 +21,7 @@ module LaunchBase
     private
 
     def show_banner
-      say "\u{1f680} #{LaunchBase}\n\n"
+      say "\u{1f680} Kabisa #{LaunchBase}\n\n"
     end
   end
 end
