@@ -24,14 +24,12 @@ end
 
 gem_group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'listen'
 end
 
 gem_group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'guard-rspec'
   gem 'fuubar'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
@@ -47,7 +45,6 @@ template 'database.erb', 'config/database.yml'
 after_bundle do
   run 'spring stop'
   generate 'rspec:install'
-  run 'guard init'
 
   remove_file '.rspec'
   copy_file '.rspec'
