@@ -3,7 +3,7 @@ SimpleCov.start
 
 require 'bundler/setup'
 require 'launch_base'
-require './spec/support/launch_base'
+require './spec/support/launch_base_test_helpers'
 
 Dir[Pathname.new(__dir__).join('support/**/*.rb')].each { |f| require f }
 

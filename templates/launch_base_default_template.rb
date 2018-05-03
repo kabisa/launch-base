@@ -39,6 +39,7 @@ copy_file '.ruby-version'
 
 remove_file 'config/database.yml'
 template 'database.erb', 'config/database.yml'
+
 after_bundle do
   run 'spring stop'
   generate 'rspec:install'
