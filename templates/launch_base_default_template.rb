@@ -3,8 +3,6 @@ def source_paths
   Array(super) + [__dir__]
 end
 
-run 'printenv'
-
 say 'Removing and setting up Gemfile for new project'
 remove_file 'Gemfile'
 run 'touch Gemfile'
@@ -44,7 +42,6 @@ template 'database.erb', 'config/database.yml'
 
 after_bundle do
   run 'spring stop'
-  run 'printenv'
   bundle_command 'exec rails g rspec:install'
 
   remove_file '.rspec'
