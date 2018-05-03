@@ -47,6 +47,11 @@ remove_file '.ruby-version'
 copy_file '.ruby-version', '.ruby-version'
 copy_file '.ruby-gemset', '.ruby-gemset'
 
+copy_file '.codeclimate.yml', '.codeclimate.yml'
+copy_file '.eslintrc.json', '.eslintrc.json'
+copy_file '.rubocop.yml', '.rubocop.yml'
+copy_file 'config.reek', 'config.reek'
+
 say 'Adding README.md file to project'
 remove_file 'README.md'
 copy_file 'README.md', 'README.md'

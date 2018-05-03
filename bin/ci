@@ -10,6 +10,5 @@ cd $DUMMY_APP_PATH && \
 printenv && \
 pwd && \
 cat Gemfile && \
-rvm use 2.5.1@launch-base && \
 bundle install && \
 bundle exec rspec spec

@@ -74,4 +74,20 @@ describe 'App Generator' do
   it 'adds a custom rails_helper file' do
     expect_file_contents 'spec/rails_helper.rb', 'config.include FeatureSpecHelpers, type: :feature'
   end
+
+  it 'adds a Code Climate configuration file' do
+    expect_file_exists '.codeclimate.yml'
+  end
+
+  it 'adds a ESLint configuration file' do
+    expect_file_exists '.eslintrc.json'
+  end
+
+  it 'adds a Rubocop configuration file' do
+    expect_file_exists '.rubocop.yml'
+  end
+
+  it 'adds a Reek configuration file' do
+    expect_file_exists 'config.reek'
+  end
 end
