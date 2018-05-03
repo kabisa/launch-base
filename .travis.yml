@@ -3,10 +3,9 @@ matrix:
   include:
     - language: ruby
       before_install:
-        - rvm gemset create launch-base
         - gem install bundler
       rvm:
-        - 2.5.1@launch-base
+        - 2.5.1@launch-base --create
       install:
         - bin/setup
       script:
