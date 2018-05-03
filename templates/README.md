@@ -2,7 +2,8 @@
 
 ## What's in it?
 
-For specific version numbers please refer to [templates/launch_base_default_template.rb](templates/launch_base_default_template.rb)
+For specific version numbers please refer to
+[the LaunchBase template](https://github.com/kabisa/launch-base/tree/master/templates/linters)
 
 - Rails with Spring and Bootsnap
 - RSpec
@@ -48,6 +49,6 @@ and run:
 codeclimate analyze
 ```
 
-More info about CodeClimate: https://codeclimate.com/
+More info about CodeClimate: [codeclimate.com](https://codeclimate.com)
 
-More info about the CodeClimate CLI: https://github.com/codeclimate/codeclimate
+More info about the CodeClimate CLI: [github.com/codeclimate/codeclimate](https://github.com/codeclimate/codeclimate)
