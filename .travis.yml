@@ -10,6 +10,8 @@ matrix:
         - bin/setup
       script:
         - bin/ci
+      addons:
+        chrome: stable
     - language: node_js
       node_js:
         - "8"
