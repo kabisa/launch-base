@@ -1,6 +1,6 @@
 DUMMY_APP_PATH=${DUMMY_APP_PATH:=/tmp/launch_base/dummy_app} && \
-bundle exec rubocop -c templates/linters/.rubocop.yml test/linters/ruby.rb && \
-bundle exec reek -c templates/linters/config.reek test/linters/ruby.rb && \
+bundle exec rubocop -c templates/.rubocop.yml test/linters/ruby.rb && \
+bundle exec reek -c templates/config.reek test/linters/ruby.rb && \
 (rm -rf $DUMMY_APP_PATH || true) && \
 cd .. && \
 rails new $DUMMY_APP_PATH -m launch-base/templates/launch_base_default_template.rb && \

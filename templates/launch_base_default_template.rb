@@ -52,7 +52,7 @@ remove_file 'README.md'
 copy_file 'README.md', 'README.md'
 
 remove_file 'config/database.yml'
-template 'database.erb', 'config/database.yml'
+template 'config/database.yml.erb', 'config/database.yml'
 
 after_bundle do
   run 'spring stop'
@@ -78,7 +78,7 @@ after_bundle do
 
   run 'rm -rf test'
 
-  copy_file 'ping_spec.rb', 'spec/requests/ping_spec.rb'
+  copy_file 'spec/requests/ping_spec.rb', 'spec/requests/ping_spec.rb'
   copy_file 'spec/features/homepage_spec.rb', 'spec/features/homepage_spec.rb'
   copy_file 'app/controllers/homepage_controller.rb', 'app/controllers/homepage_controller.rb'
 
@@ -90,7 +90,12 @@ after_bundle do
   end
 
   create_file 'app/views/homepage/show.html.erb' do
-    markdown_renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    markdown_renderer = Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML.new(link_attributes: { target: '_blank' }),
+      autolink: true,
+      tables: true
+    )
+
     markdown = File.read('README.md')
     markdown_renderer.render(markdown)
   end

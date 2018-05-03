@@ -17,6 +17,6 @@
   },
 
   "scripts": {
-    "test-eslint": "eslint -c templates/linters/.eslintrc.json test/linters/es6.js"
+    "test-eslint": "eslint -c templates/.eslintrc.json test/linters/es6.js"
   }
 }
