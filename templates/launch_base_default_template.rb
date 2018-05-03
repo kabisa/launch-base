@@ -59,6 +59,9 @@ copy_file 'README.md', 'README.md'
 remove_file 'config/database.yml'
 template 'config/database.yml.erb', 'config/database.yml'
 
+uncomment_lines 'config/environments/development.rb', 'config.action_view.raise_on_missing_translations = true'
+uncomment_lines 'config/environments/test.rb', 'config.action_view.raise_on_missing_translations = true'
+
 after_bundle do
   run 'spring stop'
   bundle_command 'exec rails g rspec:install'

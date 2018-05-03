@@ -90,4 +90,19 @@ describe 'App Generator' do
   it 'adds a Reek configuration file' do
     expect_file_exists 'config.reek'
   end
+
+  it 'activates raising on missing translations for development environment' do
+    expect_file_contents(
+      'config/environments/development.rb',
+      '  config.action_view.raise_on_missing_translations = true'
+    )
+  end
+
+  it 'activates raising on missing translations for test environment' do
+    expect_file_contents 'config/environments/test.rb', '  config.action_view.raise_on_missing_translations = true'
+  end
+
+  it 'activates raising application errors for test environment' do
+    expect_file_contents 'config/environments/test.rb', '  config.action_dispatch.show_exceptions = false'
+  end
 end
