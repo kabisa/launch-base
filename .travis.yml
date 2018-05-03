@@ -2,6 +2,8 @@ sudo: required
 matrix:
   include:
     - language: ruby
+      before_install:
+        - gem install bundler
       install:
         - bin/setup
       script:
