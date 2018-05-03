@@ -3,7 +3,7 @@
 ## What's in it?
 
 For specific version numbers please refer to
-[the LaunchBase template](https://github.com/kabisa/launch-base/tree/master/templates/launch_base_default_template)
+[the LaunchBase template](https://github.com/kabisa/launch-base/tree/master/templates/launch_base_default_template.rb)
 
 - Rails with Spring and Bootsnap
 - RSpec with Capybara, FactoryBot, DatabaseCleaner and Headless Chrome (via Selenium)
