@@ -3,6 +3,8 @@ def source_paths
   Array(super) + [__dir__]
 end
 
+run 'printenv'
+
 say 'Removing and setting up Gemfile for new project'
 remove_file 'Gemfile'
 run 'touch Gemfile'
@@ -42,7 +44,8 @@ template 'database.erb', 'config/database.yml'
 
 after_bundle do
   run 'spring stop'
-  generate 'rspec:install'
+  run 'printenv'
+  bundle_command 'exec rails g rspec:install'
 
   remove_file '.rspec'
   copy_file '.rspec'
@@ -61,7 +64,7 @@ after_bundle do
     "  get '/ping', to: ->(_env) { [200, {}, ['pong']]}"
   end
 
-  rake 'db:drop'
-  rake 'db:create'
-  rake 'db:migrate'
+  bundle_command 'exec rake db:drop'
+  bundle_command 'exec rake db:create'
+  bundle_command 'exec rake db:migrate'
 end
