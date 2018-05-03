@@ -3,7 +3,7 @@
 ## What's in it?
 
 For specific version numbers please refer to
-[the LaunchBase template](https://github.com/kabisa/launch-base/tree/master/templates/linters)
+[the LaunchBase template](https://github.com/kabisa/launch-base/tree/master/templates/launch_base_default_template)
 
 - Rails with Spring and Bootsnap
 - RSpec
