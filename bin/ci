@@ -4,4 +4,6 @@ bundle exec reek -c templates/linters/config.reek test/linters/ruby.rb && \
 cd .. && \
 rails new /tmp/launch_base/dummy_app -m launch-base/templates/launch_base_default_template.rb && \
 cd - && \
-DUMMY_APP_PATH=/tmp/launch_base/dummy_app bundle exec rake test && bundle exec codeclimate-test-reporter
+DUMMY_APP_PATH=/tmp/launch_base/dummy_app bundle exec rake test && bundle exec codeclimate-test-reporter && \
+cd /tmp/launch_base/dummy_app && \
+bundle exec rspec spec
