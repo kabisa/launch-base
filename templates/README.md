@@ -16,13 +16,13 @@ For specific version numbers please refer to
 
 Run web server:
 
-```bash
+```
 bundle exec rails s
 ```
 
 Run tests:
 
-```bash
+```
 bundle exec rspec spec
 ```
 
@@ -32,20 +32,20 @@ To analyze your code locally, install the CodeClimate CLI:
 
 For OS X:
 
-```bash
+```
 brew install codeclimate
 ```
 
 Other systems:
 
-```bash
+```
 curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz
 cd codeclimate-* && sudo make install
 ```
 
 and run:
 
-```bash
+```
 codeclimate analyze
 ```
 
