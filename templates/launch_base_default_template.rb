@@ -42,9 +42,10 @@ gem_group :test do
   gem 'database_cleaner'
 end
 
-say 'Adding .ruby-version file to project'
+say 'Adding .ruby-version and .ruby-gemset file to project'
 remove_file '.ruby-version'
 copy_file '.ruby-version', '.ruby-version'
+copy_file '.ruby-gemset', '.ruby-gemset'
 
 say 'Adding README.md file to project'
 remove_file 'README.md'

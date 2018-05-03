@@ -2,6 +2,8 @@ sudo: required
 matrix:
   include:
     - language: ruby
+      rvm:
+        - 2.5.1@launch-base
       before_install:
         - gem install bundler
       install:
