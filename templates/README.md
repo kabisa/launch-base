@@ -19,7 +19,8 @@ For specific version numbers please refer to
 - create Dokku repository
 - add this project to Jenkins
 - [add the project to CodeClimate](https://codeclimate.com/accounts/5aa242dd800550027b000371/add_vcs_repo/new)
-- create Jenkins secret containing the CodeClimate test coverage reporter ID
+- create Jenkins credential `ethnicchic_codeclimate_test_coverage_reporter_id` containing the CodeClimate test
+  coverage reporter ID
 
 ## Basic usage
 
