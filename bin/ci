@@ -1,9 +1,10 @@
+DUMMY_APP_PATH=${DUMMY_APP_PATH:=/tmp/launch_base/dummy_app} && \
 bundle exec rubocop -c templates/linters/.rubocop.yml test/linters/ruby.rb && \
 bundle exec reek -c templates/linters/config.reek test/linters/ruby.rb && \
-(rm -rf /tmp/launch_base/dummy_app || true) && \
+(rm -rf $DUMMY_APP_PATH || true) && \
 cd .. && \
-rails new /tmp/launch_base/dummy_app -m launch-base/templates/launch_base_default_template.rb && \
+rails new $DUMMY_APP_PATH -m launch-base/templates/launch_base_default_template.rb && \
 cd - && \
-DUMMY_APP_PATH=/tmp/launch_base/dummy_app bundle exec rake test && bundle exec codeclimate-test-reporter && \
-cd /tmp/launch_base/dummy_app && \
+DUMMY_APP_PATH=$DUMMY_APP_PATH bundle exec rake test && bundle exec codeclimate-test-reporter && \
+cd $DUMMY_APP_PATH && \
 bundle exec rspec spec
