@@ -7,8 +7,7 @@ rails new $DUMMY_APP_PATH -m launch-base/templates/launch_base_default_template.
 cd - && \
 DUMMY_APP_PATH=$DUMMY_APP_PATH bundle exec rake test && bundle exec codeclimate-test-reporter && \
 cd $DUMMY_APP_PATH && \
-printenv && \
-pwd && \
-cat Gemfile && \
+export BUNDLE_GEMFILE=./Gemfile && \ 
+echo $BUNDLE_GEMFILE && \
 bundle install && \
 bundle exec rspec spec
