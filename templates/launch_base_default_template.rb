@@ -49,6 +49,7 @@ copy_file '.ruby-gemset', '.ruby-gemset'
 
 copy_file '.codeclimate.yml', '.codeclimate.yml'
 copy_file '.eslintrc.json', '.eslintrc.json'
+copy_file '.mdlrc', '.mdlrc'
 copy_file '.rubocop.yml', '.rubocop.yml'
 copy_file 'config.reek', 'config.reek'
 

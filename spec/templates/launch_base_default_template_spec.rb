@@ -83,6 +83,10 @@ describe 'App Generator' do
     expect_file_exists '.eslintrc.json'
   end
 
+  it 'adds a Markdownlint configuration file' do
+    expect_file_exists '.mdlrc'
+  end
+
   it 'adds a Rubocop configuration file' do
     expect_file_exists '.rubocop.yml'
   end
