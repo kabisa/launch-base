@@ -7,11 +7,12 @@ def capture(stream)
     RUBY
     yield
     result = eval <<-RUBY, binding, __FILE__, __LINE__ + 1
-      $#{stream}").string
+      $#{stream}
     RUBY
+    result = result.string
   ensure
     eval <<-RUBY, binding, __FILE__, __LINE__ + 1
-      $#{stream} = #{stream.upcase}")
+      $#{stream} = #{stream.upcase}
     RUBY
   end
 
