@@ -1,0 +1,94 @@
+projectId = "[PROJECT ID]"
+
+pipeline {
+  agent any
+
+  options {
+    ansiColor("xterm")
+  }
+
+  stages {
+    stage("Tests") {
+      agent {
+        dockerfile {
+          filename "dockerfiles/ci/Dockerfile"
+          additionalBuildArgs support.ciDockerFileBuildArgs()
+          args "${support.ciDockerFileRunArgs(projectId)} -u root"
+        }
+      }
+
+      environment {
+        RAILS_ENV = 'test'
+        CODECLIMATE_REPO_TOKEN = credentials('[APP_NAME]_codeclimate_test_coverage_reporter_id')
+      }
+
+      steps {
+        sh "service postgres start"
+        sh "bundle config --global jobs \$(cat /proc/cpuinfo | grep -c processor)"
+        sh "bin/ci"
+      }
+
+      post {
+        always {
+          script {
+            support.restoreWorkspacePermissions()
+          }
+        }
+      }
+    }
+
+    stage("Set APP_ENV for staging") {
+      when {
+        branch 'staging/*'
+      }
+      steps {
+        script {
+          env.APP_ENV = 'staging'
+        }
+      }
+    }
+
+    stage("Deploy to Dokku staging") {
+      when {
+        branch 'staging/*'
+      }
+      steps {
+        sh 'ssh-keyscan -H [PROJECT_ID].staging.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
+        sh 'git remote | grep dokku-staging >/dev/null || git remote add dokku-staging dokku@[PROJECT_ID].staging.kabisa.nl:[PROJECT_ID]-staging'
+        sh 'git push dokku-staging HEAD:master --force'
+      }
+      post {
+        always {
+          script { support.slackNotification(channel: "#[NOTIFICATION_CHANNEL]") }
+        }
+      }
+    }
+
+    stage("Set APP_ENV for production") {
+      when {
+        branch 'master'
+      }
+      steps {
+        script {
+          env.APP_ENV = 'production'
+        }
+      }
+    }
+
+    stage("Deploy to Dokku production") {
+      when {
+        branch 'master'
+      }
+      steps {
+        // sh 'ssh-keyscan -H [PROJECT_ID].production.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
+        sh 'git remote | grep dokku-production >/dev/null || git remote add dokku-production dokku@[PROJECT_ID].production.kabisa.nl:[PROJECT_ID]-production'
+        sh 'git push dokku-production HEAD:master --force'
+      }
+      post {
+        always {
+          script { support.slackNotification(channel: "#[NOTIFICATION_CHANNEL]") }
+        }
+      }
+    }
+  }
+}

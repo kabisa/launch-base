@@ -1,0 +1,15 @@
+{
+  "name": "[APP NAME]",
+  "description": "[APP DESCRIPTION]",
+  "keywords": [
+    "dokku",
+    "rails",
+    "[APP_NAME]"
+  ],
+  "scripts": {
+    "dokku": {
+      "predeploy": "echo $RAILS_ENV",
+      "postdeploy": "bin/post_deploy"
+    }
+  }
+}

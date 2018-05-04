@@ -110,6 +110,26 @@ describe 'App Generator' do
     expect_file_contents 'config/environments/test.rb', '  config.action_dispatch.show_exceptions = false'
   end
 
+  it 'adds a ci Dockerfile' do
+    expect_file_exists 'dockerfiles/ci/Dockerfile'
+  end
+
+  it 'adds a bin/ci file' do
+    expect_file_exists 'bin/ci'
+  end
+
+  it 'adds an app.json file' do
+    expect_file_exists 'app.json'
+  end
+
+  it 'adds a post_deploy file' do
+    expect_file_exists 'bin/post_deploy'
+  end
+
+  it 'adds a Jenkinsfile' do
+    expect_file_exists 'Jenkinsfile'
+  end
+
   it 'sets the production log level to info' do
     expect_file_contents 'config/environments/production.rb', 'config.log_level = :info'
   end

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Bundle gems
+bundle check || bundle install --path="/cache"
+
+set -eu -o pipefail
+
+env
+
+bundle exec rake db:drop db:create db:schema:load assets:precompile
+bundle exec rspec spec && bundle exec codeclimate-test-reporter
