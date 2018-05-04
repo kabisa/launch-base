@@ -18,6 +18,7 @@ For specific version numbers please refer to
 - create GitHub repository
 - create Dokku repository
 - replace `[PROJECT ID]`, `[APP_NAME]`, `[PROJECT_ID]` and `[NOTIFICATION_CHANNEL]` with the correct values
+- setup the server provisioning
 - add this project to Jenkins
 - add the project to CodeClimate
 - create Jenkins credential `[APP_NAME]_codeclimate_test_coverage_reporter_id` containing the CodeClimate test
