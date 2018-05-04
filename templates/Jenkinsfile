@@ -19,7 +19,7 @@ pipeline {
 
       environment {
         RAILS_ENV = 'test'
-        CODECLIMATE_REPO_TOKEN = credentials('ethnicchic_codeclimate_test_coverage_reporter_id')
+        CODECLIMATE_REPO_TOKEN = credentials('[APP_NAME]_codeclimate_test_coverage_reporter_id')
       }
 
       steps {
@@ -53,8 +53,8 @@ pipeline {
         branch 'staging/*'
       }
       steps {
-        sh 'ssh-keyscan -H ethnic-chic.staging.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
-        sh 'git remote | grep dokku-staging >/dev/null || git remote add dokku-staging dokku@ethnic-chic.staging.kabisa.nl:ethnic-chic-staging'
+        sh 'ssh-keyscan -H [PROJECT_ID].staging.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
+        sh 'git remote | grep dokku-staging >/dev/null || git remote add dokku-staging dokku@[PROJECT_ID].staging.kabisa.nl:[PROJECT_ID]-staging'
         sh 'git push dokku-staging HEAD:master --force'
       }
       post {
@@ -80,8 +80,8 @@ pipeline {
         branch 'master'
       }
       steps {
-        // sh 'ssh-keyscan -H ethnic-chic.production.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
-        sh 'git remote | grep dokku-production >/dev/null || git remote add dokku-production dokku@ethnic-chic.production.kabisa.nl:ethnic-chic-production'
+        // sh 'ssh-keyscan -H [PROJECT_ID].production.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
+        sh 'git remote | grep dokku-production >/dev/null || git remote add dokku-production dokku@[PROJECT_ID].production.kabisa.nl:[PROJECT_ID]-production'
         sh 'git push dokku-production HEAD:master --force'
       }
       post {
