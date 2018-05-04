@@ -120,6 +120,11 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*_spec.rb'
 
+Security/Eval:
+  Exclude:
+    - 'spec/*.rb'
+    - 'spec/**/*.rb'
+
 # Do not suggest to rename `has_x?` to `x?`
 Naming:
   Enabled: false

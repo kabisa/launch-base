@@ -1,7 +1,0 @@
-# https://rubocop.readthedocs.io/
-#
-
-inherit_from: ../../rubocop.yml
-
-Security/Eval:
-  Enabled: false
