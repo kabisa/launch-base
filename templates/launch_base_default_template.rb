@@ -62,6 +62,7 @@ template 'config/database.yml.erb', 'config/database.yml'
 
 uncomment_lines 'config/environments/development.rb', 'config.action_view.raise_on_missing_translations = true'
 uncomment_lines 'config/environments/test.rb', 'config.action_view.raise_on_missing_translations = true'
+gsub_file 'config/environments/production.rb', 'config.log_level = :debug', 'config.log_level = :info'
 
 after_bundle do
   run 'spring stop'

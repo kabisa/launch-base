@@ -109,4 +109,8 @@ describe 'App Generator' do
   it 'activates raising application errors for test environment' do
     expect_file_contents 'config/environments/test.rb', '  config.action_dispatch.show_exceptions = false'
   end
+
+  it 'sets the production log level to info' do
+    expect_file_contents 'config/environments/production.rb', 'config.log_level = :info'
+  end
 end
