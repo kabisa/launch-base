@@ -17,8 +17,6 @@ RUN apt-get update -qq && apt-get install -y \
     postgresql-contrib \
     google-chrome-stable \
     unzip \
-    oracle-java8-installer \
-    elasticsearch \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN  wget --no-check-certificate https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip \
