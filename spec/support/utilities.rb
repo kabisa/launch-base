@@ -2,11 +2,17 @@
 def capture(stream)
   begin
     stream = stream.to_s
-    eval "$#{stream} = StringIO.new"
+    eval <<-RUBY, binding, __FILE__, __LINE__ + 1
+      $#{stream} = StringIO.new
+    RUBY
     yield
-    result = eval("$#{stream}").string
+    result = eval <<-RUBY, binding, __FILE__, __LINE__ + 1
+      $#{stream}").string
+    RUBY
   ensure
-    eval("$#{stream} = #{stream.upcase}")
+    eval <<-RUBY, binding, __FILE__, __LINE__ + 1
+      $#{stream} = #{stream.upcase}")
+    RUBY
   end
 
   result

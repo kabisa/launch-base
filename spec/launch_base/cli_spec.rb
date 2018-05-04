@@ -15,7 +15,8 @@ describe LaunchBase::CLI do
         cli.invoke :help
       end
 
-      expect(output).to match /Kabisa LaunchBase/i
+      expected = /Kabisa LaunchBase/i
+      expect(output).to match expected
     end
   end
 end

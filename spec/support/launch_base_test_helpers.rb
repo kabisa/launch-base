@@ -33,7 +33,7 @@ module LaunchBaseTestHelpers
   end
 
   def file_existence(file_path)
-    File.exists?(project_file_path(file_path))
+    File.exist?(project_file_path(file_path))
   end
 
   def project_file_path(file_path)
