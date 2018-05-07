@@ -1,9 +1,11 @@
 require 'thor'
+require 'launch_base/lint_cli'
 
 module LaunchBase
   class CLI < Thor
     include Thor::Actions
     package_name 'launch_base'
+    register(LintCLI, 'lint', 'lint', 'Lint commands')
 
     desc 'update', "update #{LaunchBase}"
     long_desc <<-LONGDESC
