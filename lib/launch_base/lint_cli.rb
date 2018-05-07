@@ -16,9 +16,9 @@ module LaunchBase
       end
     end
 
-    desc 'update', 'update lint configuration files'
+    desc 'update', 'update gem and reinstall lint configuration files'
     long_desc <<-LONGDESC
-      `#{@package_name} lint update` updates the gem and installs the lint configuration files
+      `#{@package_name} lint update` updates the gem and reinstalls the lint configuration files
     LONGDESC
     def update
       invoke CLI, 'update'
