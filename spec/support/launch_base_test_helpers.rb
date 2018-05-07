@@ -1,12 +1,15 @@
 module LaunchBaseTestHelpers
-  def project_path
-    environment_variable = 'DUMMY_APP_PATH'
-    dummy_app_path = ENV[environment_variable]
+  DUMMY_APP_PATH_ENV_VAR_NAME = 'DUMMY_APP_PATH'.freeze
 
-    raise "#{environment_variable} is missing" if (dummy_app_path || '').empty?
-    raise "#{environment_variable} #{dummy_app_path} does not exist" unless File.directory?(dummy_app_path)
+  def project_path
+    raise "#{DUMMY_APP_PATH_ENV_VAR_NAME} is missing" if dummy_app_path_not_set?
+    raise "#{DUMMY_APP_PATH_ENV_VAR_NAME} #{dummy_app_path} does not exist" unless File.directory?(dummy_app_path)
 
     dummy_app_path
+  end
+
+  def dummy_app_path_not_set?
+    (dummy_app_path || '').empty?
   end
 
   def expect_file_contents(file_path, expected_contents)
@@ -27,6 +30,10 @@ module LaunchBaseTestHelpers
   end
 
   private
+
+  def dummy_app_path
+    ENV[DUMMY_APP_PATH_ENV_VAR_NAME]
+  end
 
   def directory_existence(directory_path)
     File.directory?(project_file_path(directory_path))

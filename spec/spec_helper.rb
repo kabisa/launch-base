@@ -14,6 +14,10 @@ RSpec.configure do |config|
 
   config.include LaunchBaseTestHelpers
 
+  if Class.new { include LaunchBaseTestHelpers }.new.dummy_app_path_not_set?
+    config.filter_run_excluding needs_dummy_app: true
+  end
+
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
