@@ -3,30 +3,30 @@ def capture(stream)
   begin
     stream = stream.to_s
 
-    create_stream(stream)
+    stub_stream(stream)
     yield
-    result = read_stream(stream)
+    result = read_stubbed_stream(stream)
   ensure
-    stream_to_upcase(stream)
+    unstub_stream(stream)
   end
 
   result
 end
 
-def create_stream(stream)
+def stub_stream(stream)
   eval <<-RUBY, binding, __FILE__, __LINE__ + 1
     $#{stream} = StringIO.new
   RUBY
 end
 
-def read_stream(stream)
+def read_stubbed_stream(stream)
   result = eval <<-RUBY, binding, __FILE__, __LINE__ + 1
     $#{stream}
   RUBY
   result.string
 end
 
-def stream_to_upcase(stream)
+def unstub_stream(stream)
   eval <<-RUBY, binding, __FILE__, __LINE__ + 1
     $#{stream} = #{stream.upcase}
   RUBY
