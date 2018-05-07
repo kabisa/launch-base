@@ -29,6 +29,20 @@ module LaunchBaseTestHelpers
     expect(file_existence(file_path)).to be true
   end
 
+  def within_temp_test_directory(&block)
+    FileUtils.rm_rf(temp_test_directory)
+    FileUtils.mkdir_p(temp_test_directory)
+    FileUtils.cd(temp_test_directory, &block)
+  end
+
+  def temp_test_directory
+    Pathname.new('tmp').join('launch_base', 'test_space')
+  end
+
+  def templates_directory
+    Pathname.new(__dir__).join('..', '..', 'templates')
+  end
+
   private
 
   def dummy_app_path
