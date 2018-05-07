@@ -43,6 +43,12 @@ module LaunchBaseTestHelpers
     Pathname.new(__dir__).join('..', '..', 'templates')
   end
 
+  def invoke_command(*args)
+    capture :stdout do
+      LaunchBase::CLI.start(args)
+    end
+  end
+
   private
 
   def dummy_app_path

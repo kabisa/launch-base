@@ -3,7 +3,7 @@ describe LaunchBase::CLI do
     it 'runs `bundle update launch_base`' do
       expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base')
 
-      LaunchBase::CLI.start ['update']
+      invoke_command 'update'
     end
   end
 
@@ -11,7 +11,7 @@ describe LaunchBase::CLI do
     ['.codeclimate.yml', '.eslintrc.json', '.mdlrc', '.rubocop.yml', 'config.reek'].each do |configuration_file_name|
       it "installs the #{configuration_file_name} configuration file" do
         within_temp_test_directory do
-          LaunchBase::CLI.start ['lint', 'install']
+          invoke_command 'lint', 'install'
         end
 
         source_file_path = templates_directory.join(configuration_file_name)
@@ -27,7 +27,7 @@ describe LaunchBase::CLI do
       expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base')
 
       within_temp_test_directory do
-        LaunchBase::CLI.start ['lint', 'update']
+        invoke_command 'lint', 'update'
       end
 
       source_file_path = templates_directory.join('.codeclimate.yml')
@@ -39,9 +39,7 @@ describe LaunchBase::CLI do
 
   describe 'help' do
     it 'includes the banner' do
-      output = capture :stdout do
-        LaunchBase::CLI.start ['help']
-      end
+      output = invoke_command 'help'
 
       expected = /Kabisa LaunchBase/i
       expect(output).to match expected
