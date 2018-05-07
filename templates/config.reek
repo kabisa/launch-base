@@ -53,3 +53,8 @@ UncommunicativeModuleName:
 "app/helpers":
   UtilityFunction:
     enabled: false
+
+# Allow spec helpers that do not depend on instance state
+"spec/support":
+  UtilityFunction:
+    enabled: false
