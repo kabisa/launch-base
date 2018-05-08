@@ -126,7 +126,7 @@ after_bundle do
     copy_file 'models/kabisian.rb', 'app/models/kabisian.rb'
     copy_file 'views/kabisians/show.html.erb', 'app/views/kabisians/show.html.erb'
     copy_file 'spec/features/kabisians_spec_.rb', 'spec/features/kabisians_spec.rb'
-    run 'rails generate migration CreateKabisians name:string'
+    bundle_command 'exec rails generate migration CreateKabisians name:string'
   end
 
   bundle_command 'exec rake db:drop'
