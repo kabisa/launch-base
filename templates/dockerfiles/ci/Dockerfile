@@ -33,3 +33,5 @@ RUN sed -i 's/md5\|peer/trust/' /etc/postgresql/*/main/pg_hba.conf
 # Configure bundler
 RUN gem install bundler
 RUN bundle config --global path /cache/
+
+WORKDIR /App
