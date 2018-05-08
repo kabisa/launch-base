@@ -1,0 +1,2 @@
+class Kabisian < ApplicationRecord
+end
