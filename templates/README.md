@@ -12,6 +12,7 @@ For specific version numbers please refer to
 - Pry
 - database: PostgreSQL
 - web server: puma
+- lint configuration for CodeClimate, ESLint, Rubocop and Reek
 
 ## First steps
 
