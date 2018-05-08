@@ -9,7 +9,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'launch_base'
+gem 'launch_base', github: 'kabisa/launch-base' # Launch Base is not on RubyGems yet
 ```
 
 And then execute:
