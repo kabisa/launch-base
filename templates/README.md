@@ -6,7 +6,7 @@ For specific version numbers please refer to
 [the LaunchBase template](https://github.com/kabisa/launch-base/tree/master/templates/launch_base_default_template.rb)
 
 - Rails with Spring and Bootsnap
-- RSpec with Capybara, FactoryBot, DatabaseCleaner and Headless Chrome (via Selenium)
+- RSpec with Capybara, FactoryBot and Headless Chrome (via Selenium)
 - SimpleCov including sending the coverage report to Code Climate
 - SASS
 - Pry
