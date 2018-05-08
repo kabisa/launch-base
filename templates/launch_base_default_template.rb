@@ -2,7 +2,8 @@ require 'redcarpet'
 
 # Launch Base default template file
 def source_paths
-  [__dir__] + Array(super)
+  fixtures_directory = Pathname.new(__dir__).join('..', 'spec', 'fixtures')
+  [__dir__, fixtures_directory] + Array(super)
 end
 
 say 'Removing and setting up Gemfile for new project'
@@ -39,7 +40,6 @@ gem_group :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'rspec-rails', '~> 3.7'
-  gem 'database_cleaner'
 end
 
 say 'Adding .ruby-version and .ruby-gemset file to project'
@@ -85,7 +85,6 @@ after_bundle do
              spec/fixtures'
 
   copy_file 'spec/support/capybara.rb', 'spec/support/capybara.rb'
-  copy_file 'spec/support/database_cleaner.rb', 'spec/support/database_cleaner.rb'
   copy_file 'spec/support/feature_spec_helpers.rb', 'spec/support/feature_spec_helpers.rb'
   copy_file 'spec/support/spec_helpers.rb', 'spec/support/spec_helpers.rb'
 
@@ -114,6 +113,20 @@ after_bundle do
 
     markdown = File.read('README.md')
     markdown_renderer.render(markdown)
+  end
+
+  if ENV['INCLUDE_TESTING_FILES'] == '1'
+    insert_into_file 'config/routes.rb', after: "Rails.application.routes.draw do\n" do
+      <<-ROUTES
+        resource :kabisians, only: [:show]
+      ROUTES
+    end
+
+    copy_file 'controllers/kabisians_controller.rb', 'app/controllers/kabisians_controller.rb'
+    copy_file 'models/kabisian.rb', 'app/models/kabisian.rb'
+    copy_file 'views/kabisians/show.html.erb', 'app/views/kabisians/show.html.erb'
+    copy_file 'spec/features/kabisians_spec_.rb', 'spec/features/kabisians_spec.rb'
+    run 'rails generate migration CreateKabisians name:string'
   end
 
   bundle_command 'exec rake db:drop'
