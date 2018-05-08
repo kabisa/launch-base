@@ -1,4 +1,4 @@
-describe 'App Generator' do
+describe 'App Generator', :needs_dummy_app do
   it 'uses custom Gemfile' do
     expect_file_contents 'Gemfile', /gem 'rails', '5.2.0'/
   end

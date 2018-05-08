@@ -1,12 +1,15 @@
 module LaunchBaseTestHelpers
-  def project_path
-    environment_variable = 'DUMMY_APP_PATH'
-    dummy_app_path = ENV[environment_variable]
+  DUMMY_APP_PATH_ENV_VAR_NAME = 'DUMMY_APP_PATH'.freeze
 
-    raise "#{environment_variable} is missing" if (dummy_app_path || '').empty?
-    raise "#{environment_variable} #{dummy_app_path} does not exist" unless File.directory?(dummy_app_path)
+  def project_path
+    raise "#{DUMMY_APP_PATH_ENV_VAR_NAME} is missing" if dummy_app_path_not_set?
+    raise "#{DUMMY_APP_PATH_ENV_VAR_NAME} #{dummy_app_path} does not exist" unless File.directory?(dummy_app_path)
 
     dummy_app_path
+  end
+
+  def dummy_app_path_not_set?
+    (dummy_app_path || '').empty?
   end
 
   def expect_file_contents(file_path, expected_contents)
@@ -26,7 +29,31 @@ module LaunchBaseTestHelpers
     expect(file_existence(file_path)).to be true
   end
 
+  def within_temp_test_directory(&block)
+    FileUtils.rm_rf(temp_test_directory)
+    FileUtils.mkdir_p(temp_test_directory)
+    FileUtils.cd(temp_test_directory, &block)
+  end
+
+  def temp_test_directory
+    Pathname.new('tmp').join('launch_base', 'test_space')
+  end
+
+  def templates_directory
+    Pathname.new(__dir__).join('..', '..', 'templates')
+  end
+
+  def invoke_command(*args)
+    capture :stdout do
+      LaunchBase::CLI.start(args)
+    end
+  end
+
   private
+
+  def dummy_app_path
+    ENV[DUMMY_APP_PATH_ENV_VAR_NAME]
+  end
 
   def directory_existence(directory_path)
     File.directory?(project_file_path(directory_path))
