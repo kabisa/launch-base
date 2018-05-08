@@ -1,7 +1,7 @@
 describe 'Kabisians' do
   2.times do
     it 'is visible on the kabisians page', :js do
-      Kabisian.create!(name: 'Kamili')
+      create(:kabisian, name: 'Kamili')
 
       visit '/kabisians'
 

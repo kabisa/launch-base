@@ -126,6 +126,7 @@ after_bundle do
     copy_file 'controllers/kabisians_controller.rb', 'app/controllers/kabisians_controller.rb'
     copy_file 'models/kabisian.rb', 'app/models/kabisian.rb'
     copy_file 'views/kabisians/show.html.erb', 'app/views/kabisians/show.html.erb'
+    copy_file 'spec/factories/kabisians.rb', 'spec/factories/kabisians.rb'
     copy_file 'spec/features/kabisians_spec_.rb', 'spec/features/kabisians_spec.rb'
     bundle_command 'exec rails generate migration CreateKabisians name:string'
   end
