@@ -62,6 +62,7 @@ template 'config/database.yml.erb', 'config/database.yml'
 
 copy_file 'app.json', 'app.json'
 copy_file 'bin/ci', 'bin/ci'
+run 'chmod +x bin/ci'
 copy_file 'bin/post_deploy', 'bin/post_deploy'
 copy_file 'dockerfiles/ci/Dockerfile', 'dockerfiles/ci/Dockerfile'
 copy_file 'Jenkinsfile', 'Jenkinsfile'

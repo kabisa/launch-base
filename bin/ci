@@ -10,6 +10,5 @@ DUMMY_APP_PATH=$DUMMY_APP_PATH bundle exec rake test && bundle exec codeclimate-
 cd $DUMMY_APP_PATH && \
 export BUNDLE_GEMFILE=./Gemfile && \
 echo $BUNDLE_GEMFILE && \
-bundle install && \
-bundle exec rspec spec && \
+bin/ci && \
 docker build . -f dockerfiles/ci/Dockerfile
