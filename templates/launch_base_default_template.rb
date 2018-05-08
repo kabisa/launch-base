@@ -85,6 +85,7 @@ after_bundle do
              spec/fixtures'
 
   copy_file 'spec/support/capybara.rb', 'spec/support/capybara.rb'
+  copy_file 'spec/support/factory_bot.rb', 'spec/support/factory_bot.rb'
   copy_file 'spec/support/feature_spec_helpers.rb', 'spec/support/feature_spec_helpers.rb'
   copy_file 'spec/support/spec_helpers.rb', 'spec/support/spec_helpers.rb'
 

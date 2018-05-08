@@ -60,6 +60,10 @@ describe 'App Generator', :needs_dummy_app do
     expect_file_contents 'spec/support/capybara.rb', 'Capybara.register_driver :selenium_chrome_headless'
   end
 
+  it 'adds FactoryBot configuration' do
+    expect_file_contents 'spec/support/factory_bot.rb', 'config.include FactoryBot::Syntax::Methods'
+  end
+
   it 'adds a module for feature spec helpers' do
     expect_file_contents 'spec/support/feature_spec_helpers.rb', 'module FeatureSpecHelpers'
   end
