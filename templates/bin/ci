@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+service postgresql start
+
 # Bundle gems
 bundle check || bundle install --path="/cache"
 
