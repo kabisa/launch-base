@@ -9,7 +9,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'launch_base'
+gem 'launch_base', github: 'kabisa/launch-base' # Launch Base is not on RubyGems yet
 ```
 
 And then execute:
@@ -23,8 +23,10 @@ Or install it yourself as:
 ## Usage
 
 ```
-launch_base help [COMMAND]  # Describe available commands or one specific command
-launch_base update          # update LaunchBase
+launch_base help [COMMAND]      # Describe available commands or one specific command
+launch_base update              # update LaunchBase
+launch_base lint install        # install lint configuration files
+launch_base lint update         # update gem and reinstall lint configuration files
 ```
 
 ## Contents
