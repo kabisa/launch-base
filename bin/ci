@@ -9,4 +9,4 @@ cd - && \
 DUMMY_APP_PATH=$DUMMY_APP_PATH bundle exec rake test && bundle exec codeclimate-test-reporter && \
 cd $DUMMY_APP_PATH && \
 docker build -f dockerfiles/ci/Dockerfile -t launch_base_dummy_app . && \
-docker run -it -v $(pwd):/App launch_base_dummy_app bin/ci
+docker run -it -v "$(pwd)":/App launch_base_dummy_app bin/ci
