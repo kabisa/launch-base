@@ -1,7 +1,7 @@
 describe LaunchBase::CLI do
   describe 'update' do
     it 'runs `bundle update launch_base`' do
-      expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base')
+      expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base --conservative')
 
       invoke_command 'update'
     end
@@ -24,7 +24,7 @@ describe LaunchBase::CLI do
 
   describe 'lint update' do
     it 'updates the gem and installs the linter configuration files' do
-      expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base')
+      expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base --conservative')
 
       within_temp_test_directory do
         invoke_command 'lint', 'update'

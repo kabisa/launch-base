@@ -12,7 +12,7 @@ module LaunchBase
       `#{@package_name} update` triggers Bundler to update the #{LaunchBase} gem
     LONGDESC
     def update
-      run 'bundle update launch_base'
+      run 'bundle update launch_base --conservative'
     end
 
     def help
