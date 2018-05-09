@@ -123,6 +123,10 @@ after_bundle do
       ROUTES
     end
 
+    insert_into_file 'bin/ci', before: "\ncc-test-reporter before-build" do
+      "\ngit add . && git commit -m 'Dummy commit'"
+    end
+
     copy_file 'controllers/kabisians_controller.rb', 'app/controllers/kabisians_controller.rb'
     copy_file 'models/kabisian.rb', 'app/models/kabisian.rb'
     copy_file 'views/kabisians/show.html.erb', 'app/views/kabisians/show.html.erb'
