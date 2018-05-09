@@ -22,7 +22,7 @@ For specific version numbers please refer to
 - setup the server provisioning
 - add this project to Jenkins
 - add the project to CodeClimate
-- create Jenkins credential `[APP_NAME]_codeclimate_test_coverage_reporter_id` containing the CodeClimate test
+- create Jenkins credential `[APP_NAME]_codeclimate_test_reporter_id` containing the CodeClimate test
   coverage reporter ID
 
 ## Basic usage
