@@ -1,4 +1,12 @@
 describe LaunchBase::CLI do
+  describe 'new' do
+    it 'generates a new app using the template' do
+      expect_any_instance_of(LaunchBase::CLI).to receive(:run).with(/rails new foobar.+launch_base_default_template.rb/)
+
+      invoke_command 'new', 'foobar'
+    end
+  end
+
   describe 'update' do
     it 'runs `bundle update launch_base`' do
       expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base --conservative')
