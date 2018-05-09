@@ -127,6 +127,10 @@ after_bundle do
       "\ngit add . && git commit -m 'Dummy commit'"
     end
 
+    insert_into_file 'bin/ci', after: 'cc-test-reporter after-build' do
+      ' || true'
+    end
+
     copy_file 'controllers/kabisians_controller.rb', 'app/controllers/kabisians_controller.rb'
     copy_file 'models/kabisian.rb', 'app/models/kabisian.rb'
     copy_file 'views/kabisians/show.html.erb', 'app/views/kabisians/show.html.erb'
