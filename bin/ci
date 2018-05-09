@@ -6,7 +6,11 @@ bundle exec reek -c templates/config.reek test/linters/ruby.rb && \
 cd .. && \
 INCLUDE_TESTING_FILES=1 rails new $DUMMY_APP_PATH -m launch-base/templates/launch_base_default_template.rb && \
 cd - && \
-DUMMY_APP_PATH=$DUMMY_APP_PATH bundle exec rake test && bundle exec codeclimate-test-reporter && \
+curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && \
+chmod +x ./cc-test-reporter && \
+./cc-test-reporter before-build && \
+DUMMY_APP_PATH=$DUMMY_APP_PATH bundle exec rake test && \
+(./cc-test-reporter after-build || true) && \
 cd $DUMMY_APP_PATH && \
 docker build -f dockerfiles/ci/Dockerfile -t launch_base_dummy_app . && \
 docker run -it -v $DUMMY_APP_PATH:/App launch_base_dummy_app bin/ci
