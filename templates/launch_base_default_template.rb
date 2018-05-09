@@ -52,9 +52,9 @@ copy_file '.mdlrc', '.mdlrc'
 copy_file '.rubocop.yml', '.rubocop.yml'
 copy_file 'config.reek', 'config.reek'
 
-say 'Adding README.md file to project'
+say 'Adding README.md.erb file to project'
 remove_file 'README.md'
-copy_file 'README.md', 'README.md'
+template 'README.md.erb', 'README.md'
 
 remove_file 'config/database.yml'
 template 'config/database.yml.erb', 'config/database.yml'
