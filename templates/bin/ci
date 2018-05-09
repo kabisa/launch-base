@@ -10,4 +10,6 @@ set -eu -o pipefail
 env
 
 bundle exec rake db:drop db:create db:schema:load assets:precompile
-bundle exec rspec spec && bundle exec codeclimate-test-reporter
+cc-test-reporter before-build
+bundle exec rspec spec
+cc-test-reporter after-build --exit-code $?

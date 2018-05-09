@@ -35,7 +35,6 @@ gem_group :test do
   gem 'capybara-selenium'
   gem 'capybara-screenshot'
   gem 'simplecov'
-  gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'fuubar'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
