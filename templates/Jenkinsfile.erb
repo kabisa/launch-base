@@ -1,4 +1,4 @@
-projectId = "[PROJECT ID]"
+projectId = "<%= ENV['APP_ID'] %>"
 
 pipeline {
   agent any
@@ -19,7 +19,7 @@ pipeline {
 
       environment {
         RAILS_ENV = 'test'
-        CC_TEST_REPORTER_ID = credentials('[APP_NAME]_codeclimate_test_reporter_id')
+        CODECLIMATE_REPO_TOKEN = credentials('<%= ENV['APP_ID'] %>_codeclimate_test_reporter_id')
       }
 
       steps {
@@ -53,13 +53,13 @@ pipeline {
         branch 'staging/*'
       }
       steps {
-        sh 'ssh-keyscan -H [PROJECT_ID].staging.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
-        sh 'git remote | grep dokku-staging >/dev/null || git remote add dokku-staging dokku@[PROJECT_ID].staging.kabisa.nl:[PROJECT_ID]-staging'
+        sh 'ssh-keyscan -H <%= ENV['APP_ID'] %>.staging.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
+        sh 'git remote | grep dokku-staging >/dev/null || git remote add dokku-staging dokku@<%= ENV['APP_ID'] %>.staging.kabisa.nl:<%= ENV['APP_ID'] %>-staging'
         sh 'git push dokku-staging HEAD:master --force'
       }
       post {
         always {
-          script { support.slackNotification(channel: "#[NOTIFICATION_CHANNEL]") }
+          script { support.slackNotification(channel: "#<%= ENV['APP_ID'] %>") }
         }
       }
     }
@@ -80,13 +80,13 @@ pipeline {
         branch 'master'
       }
       steps {
-        // sh 'ssh-keyscan -H [PROJECT_ID].production.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
-        sh 'git remote | grep dokku-production >/dev/null || git remote add dokku-production dokku@[PROJECT_ID].production.kabisa.nl:[PROJECT_ID]-production'
+        // sh 'ssh-keyscan -H <%= ENV['APP_ID'] %>.production.kabisa.nl >> ~/.ssh/known_hosts # only needed on the first run'
+        sh 'git remote | grep dokku-production >/dev/null || git remote add dokku-production dokku@<%= ENV['APP_ID'] %>.production.kabisa.nl:<%= ENV['APP_ID'] %>-production'
         sh 'git push dokku-production HEAD:master --force'
       }
       post {
         always {
-          script { support.slackNotification(channel: "#[NOTIFICATION_CHANNEL]") }
+          script { support.slackNotification(channel: "#<%= ENV['APP_ID'] %>") }
         }
       }
     }

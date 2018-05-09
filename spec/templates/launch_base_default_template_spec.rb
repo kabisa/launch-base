@@ -119,16 +119,28 @@ describe 'App Generator', :needs_dummy_app do
     expect_file_exists 'bin/ci'
   end
 
-  it 'adds an app.json file' do
-    expect_file_exists 'app.json'
+  it 'adds an prefilled app.json file' do
+    expect_file_contents 'app.json', '"name": "dummy-app"'
+    expect_file_contents 'app.json', '"description": "Dummy app"'
   end
 
   it 'adds a post_deploy file' do
     expect_file_exists 'bin/post_deploy'
   end
 
-  it 'adds a Jenkinsfile' do
-    expect_file_exists 'Jenkinsfile'
+  it 'adds a prefilled Jenkinsfile' do
+    [
+      'projectId = "dummy-app"',
+      "CODECLIMATE_REPO_TOKEN = credentials('dummy-app_codeclimate_test_reporter_id')",
+      "sh 'ssh-keyscan -H dummy-app.staging.kabisa.nl >>",
+      'git remote add dokku-staging dokku@dummy-app.staging.kabisa.nl:dummy-app-staging',
+      /support\.slackNotification\(channel: "#dummy-app"\)/,
+      'ssh-keyscan -H dummy-app.production.kabisa.nl',
+      /git remote add dokku-production dokku@dummy-app.production.kabisa.nl:dummy-app-production/,
+      /support\.slackNotification\(channel: "#dummy-app"\)/
+    ].each do |expected_content|
+      expect_file_contents 'Jenkinsfile', expected_content
+    end
   end
 
   it 'sets the production log level to info' do

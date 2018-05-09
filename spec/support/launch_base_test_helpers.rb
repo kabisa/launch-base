@@ -14,7 +14,14 @@ module LaunchBaseTestHelpers
 
   def expect_file_contents(file_path, expected_contents)
     file_contents = File.read(project_file_path(file_path))
-    expect(file_contents).to match(expected_contents)
+
+    case expected_contents
+    when Regexp
+      expect(file_contents).to match(expected_contents)
+    else
+      expect(file_contents).to include(expected_contents)
+    end
+
   end
 
   def expect_dir_exists(directory_path)
