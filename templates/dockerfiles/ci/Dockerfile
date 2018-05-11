@@ -35,4 +35,11 @@ RUN sed -i 's/md5\|peer/trust/' /etc/postgresql/*/main/pg_hba.conf
 RUN gem install bundler
 RUN bundle config --global path /cache/
 
+# Install CodeClimate test reporter
+RUN curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > \
+    /usr/local/share/cc-test-reporter \
+ && chmod +x /usr/local/share/cc-test-reporter \
+ && ln -s /usr/local/share/cc-test-reporter /usr/local/bin/cc-test-reporter
+
+# Set the workdir for running ci
 WORKDIR /App
