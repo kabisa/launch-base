@@ -50,6 +50,8 @@ plugins:
     enabled: true
   duplication:
     enabled: true
+    exclude_patterns:
+        - "spec/"
   eslint:
     enabled: true
     config:
