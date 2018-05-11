@@ -42,4 +42,4 @@ RUN curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest
  && ln -s /usr/local/share/cc-test-reporter /usr/local/bin/cc-test-reporter
 
 # Set the workdir for running ci
-WORKDIR /App
+WORKDIR /app
