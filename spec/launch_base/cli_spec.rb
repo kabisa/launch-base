@@ -1,4 +1,33 @@
 describe LaunchBase::CLI do
+  describe 'new' do
+    it 'generates a new app using the template' do
+      expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return('Rails 5.2.0')
+      expect_any_instance_of(LaunchBase::CLI).to receive(:run).with(/rails new foobar.+launch_base_default_template.rb/)
+
+      invoke_command 'new', 'foobar'
+    end
+
+    context 'when no installation of rails can be found' do
+      it 'shows a warning rails should be installed' do
+        expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return ''
+
+        output = invoke_command 'new', 'foobar'
+
+        expect(output).to match(/no.+rails.+found.+please.+install.+rails.+5\.2\.0/i)
+      end
+    end
+
+    context 'the installation of rails is outdated' do
+      it 'shows a warning rails should be updated' do
+        expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return "Rails 5.1.3\n"
+
+        output = invoke_command 'new', 'foobar'
+
+        expect(output).to match(/rails.+outdated.+please.+upgrade.+5\.2\.0/i)
+      end
+    end
+  end
+
   describe 'update' do
     it 'runs `bundle update launch_base`' do
       expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base --conservative')
@@ -41,8 +70,7 @@ describe LaunchBase::CLI do
     it 'includes the banner' do
       output = invoke_command 'help'
 
-      expected = /Kabisa LaunchBase/i
-      expect(output).to match expected
+      expect(output).to match(/Kabisa LaunchBase/i)
     end
   end
 end
