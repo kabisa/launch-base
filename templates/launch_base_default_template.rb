@@ -1,5 +1,9 @@
 require 'redcarpet'
 
+@app_id = @app_name.tr('_', '-')
+# Humanize the App Description
+@app_description = @app_name.tr('-', '_').sub(/\A_+/, '').tr('_', ' ').sub(/\A\w/, &:upcase)
+
 # Launch Base default template file
 def source_paths
   fixtures_directory = Pathname.new(__dir__).join('..', 'spec', 'fixtures')
@@ -52,19 +56,19 @@ copy_file '.mdlrc', '.mdlrc'
 copy_file '.rubocop.yml', '.rubocop.yml'
 copy_file 'config.reek', 'config.reek'
 
-say 'Adding README.md file to project'
+say 'Adding README.md.erb file to project'
 remove_file 'README.md'
-copy_file 'README.md', 'README.md'
+template 'README.md.erb', 'README.md'
 
 remove_file 'config/database.yml'
 template 'config/database.yml.erb', 'config/database.yml'
 
-copy_file 'app.json', 'app.json'
+template 'app.json.erb', 'app.json'
 copy_file 'bin/ci', 'bin/ci'
 run 'chmod +x bin/ci'
 copy_file 'bin/post_deploy', 'bin/post_deploy'
 copy_file 'dockerfiles/ci/Dockerfile', 'dockerfiles/ci/Dockerfile'
-copy_file 'Jenkinsfile', 'Jenkinsfile'
+template 'Jenkinsfile.erb', 'Jenkinsfile'
 
 uncomment_lines 'config/environments/development.rb', 'config.action_view.raise_on_missing_translations = true'
 uncomment_lines 'config/environments/test.rb', 'config.action_view.raise_on_missing_translations = true'
