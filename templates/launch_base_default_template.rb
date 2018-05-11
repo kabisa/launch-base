@@ -1,5 +1,9 @@
 require 'redcarpet'
 
+@app_id = @app_name.tr('_', '-')
+# Humanize the App Description
+@app_description = @app_name.tr('-', '_').sub(/\A_+/, '').tr('_', ' ').sub(/\A\w/, &:upcase)
+
 # Launch Base default template file
 def source_paths
   fixtures_directory = Pathname.new(__dir__).join('..', 'spec', 'fixtures')
