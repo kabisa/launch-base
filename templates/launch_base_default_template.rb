@@ -35,7 +35,6 @@ gem_group :test do
   gem 'capybara-selenium'
   gem 'capybara-screenshot'
   gem 'simplecov'
-  gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'fuubar'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
@@ -62,6 +61,7 @@ template 'config/database.yml.erb', 'config/database.yml'
 
 copy_file 'app.json', 'app.json'
 copy_file 'bin/ci', 'bin/ci'
+run 'chmod +x bin/ci'
 copy_file 'bin/post_deploy', 'bin/post_deploy'
 copy_file 'dockerfiles/ci/Dockerfile', 'dockerfiles/ci/Dockerfile'
 copy_file 'Jenkinsfile', 'Jenkinsfile'
@@ -121,6 +121,14 @@ after_bundle do
       <<-ROUTES
         resource :kabisians, only: [:show]
       ROUTES
+    end
+
+    insert_into_file 'bin/ci', before: "\ncc-test-reporter before-build" do
+      "\ngit add . && git commit -m 'Dummy commit'"
+    end
+
+    insert_into_file 'bin/ci', after: 'cc-test-reporter after-build' do
+      ' || true'
     end
 
     copy_file 'controllers/kabisians_controller.rb', 'app/controllers/kabisians_controller.rb'

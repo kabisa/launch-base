@@ -19,7 +19,7 @@ pipeline {
 
       environment {
         RAILS_ENV = 'test'
-        CODECLIMATE_REPO_TOKEN = credentials('[APP_NAME]_codeclimate_test_coverage_reporter_id')
+        CC_TEST_REPORTER_ID = credentials('[APP_NAME]_codeclimate_test_reporter_id')
       }
 
       steps {
