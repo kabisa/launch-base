@@ -4,6 +4,7 @@ bundle exec rubocop -c templates/.rubocop.yml test/linters/ruby.rb && \
 bundle exec reek -c templates/config.reek test/linters/ruby.rb && \
 (rm -rf $DUMMY_APP_PATH || true) && \
 cd .. && \
+gem install rails -v 5.2.0 && \
 INCLUDE_TESTING_FILES=1 rails new $DUMMY_APP_PATH -m launch-base/templates/launch_base_default_template.rb && \
 cd - && \
 curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && \
