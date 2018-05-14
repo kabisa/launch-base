@@ -45,7 +45,7 @@ group :test do
 end
 ```
 
-1. Add a `spec/support/database_cleaner.rb` file:
+2. Add a `spec/support/database_cleaner.rb` file:
 
 ```ruby
 require 'database_cleaner'
