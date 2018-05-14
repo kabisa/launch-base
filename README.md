@@ -87,7 +87,7 @@ push git commits and tags, and push the `.gem` file to [rubygems.org](https://ru
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [Launch Base](https://github.com/kabisa/launch_base).
+Bug reports and pull requests are welcome on GitHub at [Launch Base](https://github.com/kabisa/launch-base).
 
 ## License
 
