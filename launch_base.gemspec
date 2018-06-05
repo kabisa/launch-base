@@ -20,7 +20,21 @@ Gem::Specification.new do |spec|
   end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
+    is_test_file = f.match(%r{^(test|spec|features)/})
+    is_symlink = File.symlink?(f)
+    is_file_to_ignore = [
+      '.gitignore',
+      '.codeclimate.yml',
+      '.rspec',
+      '.rspec-status',
+      '.travis.yml',
+      '.ruby-version',
+      'package.json',
+      'Rakefile',
+      'yarn.lock'
+    ].include? f
+
+    is_test_file || is_symlink || is_file_to_ignore
   end
 
   spec.bindir = 'bin'
