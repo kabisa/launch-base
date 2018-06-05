@@ -33,12 +33,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'fuubar', '~> 2.3'
   spec.add_development_dependency 'rubocop', '~> 0.55'
   spec.add_development_dependency 'reek', '~> 4.8'
-  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry', '~> 0.11'
   spec.add_development_dependency 'simplecov', '~> 0.16'
-  spec.add_development_dependency 'codeclimate-test-reporter', '~> 1.0.0'
   spec.add_development_dependency 'redcarpet', '~> 3.4'
 
   spec.add_dependency 'thor', '~> 0.20'
 
-  spec.add_development_dependency 'gem-release', '~> 1.0.0'
+  spec.add_development_dependency 'gem-release', '~> 1.0'
 end
