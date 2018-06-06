@@ -10,5 +10,9 @@ module LaunchBase
 
       match_data[1] if match_data
     end
+
+    def self.gem_home
+      Pathname.new(__dir__).join('..', '..')
+    end
   end
 end

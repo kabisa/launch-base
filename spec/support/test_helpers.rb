@@ -43,7 +43,7 @@ module TestHelpers
 
   def invoke_command(*args)
     capture :stdout do
-      LaunchBase::CLI.start(args)
+      cli_base_class.start(args)
     end
   end
 
@@ -51,6 +51,10 @@ module TestHelpers
     resolve_file_path(file_path).open('w') do |file|
       file.write(file_contents)
     end
+  end
+
+  def cli_base_class
+    LaunchBase::CLI::Base
   end
 
   protected
