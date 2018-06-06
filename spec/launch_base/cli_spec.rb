@@ -1,7 +1,7 @@
 describe LaunchBase::CLI do
   describe 'new' do
     it 'generates a new app using the template' do
-      expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return('Rails 5.2.0')
+      stub_installed_rails_version('Rails 5.2.0')
       expect_any_instance_of(LaunchBase::CLI).to receive(:run).with(/rails new foobar.+launch_base_default_template.rb/)
 
       invoke_command 'new', 'foobar'
@@ -9,7 +9,7 @@ describe LaunchBase::CLI do
 
     context 'when no installation of rails can be found' do
       it 'shows a warning rails should be installed' do
-        expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return ''
+        stub_installed_rails_version('')
 
         output = invoke_command 'new', 'foobar'
 
@@ -19,7 +19,7 @@ describe LaunchBase::CLI do
 
     context 'the installation of rails is outdated' do
       it 'shows a warning rails should be updated' do
-        expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return "Rails 5.1.3\n"
+        stub_installed_rails_version("Rails 5.1.3\n")
 
         output = invoke_command 'new', 'foobar'
 
@@ -72,5 +72,9 @@ describe LaunchBase::CLI do
 
       expect(output).to match(/Kabisa LaunchBase/i)
     end
+  end
+
+  def stub_installed_rails_version(version = "Rails 5.2.0\n")
+    expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return(version)
   end
 end
