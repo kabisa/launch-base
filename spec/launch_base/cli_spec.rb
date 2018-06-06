@@ -7,6 +7,16 @@ describe LaunchBase::CLI do
       invoke_command 'new', 'foobar'
     end
 
+    context 'when passing --with-sidekiq' do
+      it 'installs sidekiq' do
+        stub_installed_rails_version('Rails 5.2.0')
+        expect_any_instance_of(cli_base_class).to receive(:run).with(/rails new/)
+        expect_any_instance_of(LaunchBase::Plugins::Sidekiq).to receive(:install)
+
+        invoke_command 'new', 'foobar', '--with-sidekiq'
+      end
+    end
+
     context 'when no installation of rails can be found' do
       it 'shows a warning rails should be installed' do
         stub_installed_rails_version('')
@@ -24,6 +34,23 @@ describe LaunchBase::CLI do
         output = invoke_command 'new', 'foobar'
 
         expect(output).to match(/rails.+outdated.+please.+upgrade.+5\.2\.0/i)
+      end
+    end
+  end
+
+  describe 'add' do
+    it 'adds Sidekiq' do
+      expect_any_instance_of(LaunchBase::Plugin).to receive(:run).with('bundle install')
+
+      within_temp_test_directory do
+        create_file 'Gemfile'
+        create_file 'Procfile'
+
+        invoke_command 'add', 'sidekiq'
+
+        expect_file_contents 'Gemfile', "gem 'sidekiq'"
+        expect_dir_exists 'app/workers'
+        expect_file_contents 'Procfile', 'bundle exec sidekiq'
       end
     end
   end

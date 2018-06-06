@@ -1,5 +1,6 @@
 require 'thor'
 require 'launch_base/lint_cli'
+require 'launch_base/add_cli'
 require 'launch_base/utilities'
 
 module LaunchBase
@@ -8,6 +9,7 @@ module LaunchBase
 
     package_name 'launch_base'
     register(LintCLI, 'lint', 'lint', 'Lint commands')
+    register(AddCLI, 'add', 'add', 'Add additional modules')
 
     desc 'update', "update #{LaunchBase}"
     long_desc <<-LONGDESC
