@@ -19,22 +19,10 @@ Gem::Specification.new do |spec|
     raise 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    is_test_file = f.match(%r{^(test|spec|features)/})
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
+    is_blacklisted_file = f.match(%r{^(\.|test/|spec/|bin/ci$|bin/setup$|package.json$|Rakefile$|yarn.lock$)})
     is_symlink = File.symlink?(f)
-    is_file_to_ignore = [
-      '.gitignore',
-      '.codeclimate.yml',
-      '.rspec',
-      '.rspec-status',
-      '.travis.yml',
-      '.ruby-version',
-      'package.json',
-      'Rakefile',
-      'yarn.lock'
-    ].include? f
-
-    is_test_file || is_symlink || is_file_to_ignore
+    is_blacklisted_file || is_symlink
   end
 
   spec.bindir = 'bin'
