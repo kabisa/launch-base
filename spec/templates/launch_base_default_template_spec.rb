@@ -144,4 +144,12 @@ describe 'App Generator', :needs_dummy_app do
   it 'sets the production log level to info' do
     expect_file_contents 'config/environments/production.rb', 'config.log_level = :info'
   end
+
+  context 'when passing --with-sidekiq' do
+    it 'installs Sidekiq' do
+      expect_file_contents 'Gemfile', "gem 'sidekiq'"
+      expect_dir_exists 'app/workers'
+      expect_file_contents 'Procfile', 'bundle exec sidekiq'
+    end
+  end
 end

@@ -6,7 +6,7 @@ bundle exec reek -c templates/config.reek test/linters/ruby.rb && \
 
 (rm -rf $DUMMY_APP_PATH || true) && \
 gem install rails -v 5.2.0 && \
-INCLUDE_TESTING_FILES=1 bin/launch_base new $DUMMY_APP_PATH && \
+INCLUDE_TESTING_FILES=1 bin/launch_base new $DUMMY_APP_PATH --with-sidekiq && \
 
 curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && \
 chmod +x ./cc-test-reporter && \

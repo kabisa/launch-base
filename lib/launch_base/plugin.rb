@@ -1,6 +1,13 @@
+require 'fileutils'
+
 module LaunchBase
   class Plugin < Thor
     include Thor::Actions
+
+    def touch(file_path)
+      full_path = File.join(destination_root, file_path)
+      FileUtils.touch(full_path)
+    end
 
     def self.description
       to_s
@@ -21,13 +28,17 @@ module LaunchBase
     end
 
     def self.plugin_name
-      name
-        .split('::')
-        .last
+      class_name
         .gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
         .gsub(/([a-z\d])([A-Z])/, '\1_\2')
         .tr('-', '_')
         .downcase
+    end
+
+    def self.class_name
+      name
+        .split('::')
+        .last
     end
   end
 end
