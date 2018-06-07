@@ -6,10 +6,12 @@
 
 ## Installation
 
+### In an existing Rails application
+
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'launch_base', github: 'kabisa/launch-base' # Launch Base is not on RubyGems yet
+gem 'launch_base'
 ```
 
 And then execute:
@@ -19,6 +21,10 @@ And then execute:
 Or install it yourself as:
 
     gem install launch_base
+
+### Globally, to generate a new application:
+
+    sudo gem install launch_base
 
 ## Usage
 
