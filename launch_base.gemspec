@@ -13,16 +13,16 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/kabisa/launch-base'
   spec.license       = 'MIT'
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = 'Set to "http://mygemserver.com"'
+    spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   else
     raise 'RubyGems 2.0 or newer is required to protect against public gem pushes.'
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
+    is_blacklisted_file = f.match(%r{^(\.|test/|spec/|bin/ci$|bin/setup$|package.json$|Rakefile$|yarn.lock$)})
+    is_symlink = File.symlink?(f)
+    is_blacklisted_file || is_symlink
   end
 
   spec.bindir = 'bin'
@@ -35,10 +35,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'fuubar', '~> 2.3'
   spec.add_development_dependency 'rubocop', '~> 0.55'
   spec.add_development_dependency 'reek', '~> 4.8'
-  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry', '~> 0.11'
   spec.add_development_dependency 'simplecov', '~> 0.16'
-  spec.add_development_dependency 'codeclimate-test-reporter', '~> 1.0.0'
   spec.add_development_dependency 'redcarpet', '~> 3.4'
 
   spec.add_dependency 'thor', '~> 0.20'
+
+  spec.add_development_dependency 'gem-release', '~> 1.0'
 end

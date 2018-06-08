@@ -14,8 +14,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     codeclimate-engine-rb (0.4.1)
       virtus (~> 1.0)
-    codeclimate-test-reporter (1.0.7)
-      simplecov
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -27,6 +25,7 @@ GEM
     fuubar (2.3.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
+    gem-release (1.0.0)
     ice_nine (0.11.2)
     json (2.1.0)
     method_source (0.9.0)
@@ -84,10 +83,10 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  codeclimate-test-reporter (~> 1.0.0)
   fuubar (~> 2.3)
+  gem-release (~> 1.0)
   launch_base!
-  pry
+  pry (~> 0.11)
   rake (~> 10.0)
   redcarpet (~> 3.4)
   reek (~> 4.8)

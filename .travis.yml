@@ -1,21 +1,30 @@
 sudo: required
 services:
-  - docker
+- docker
 matrix:
   include:
-    - language: ruby
-      before_install:
-        - gem install bundler
-      rvm:
-        - 2.5.1@launch-base --create
-      install:
-        - bin/setup
-      script:
-        - bin/ci
-      addons:
-        chrome: stable
-    - language: node_js
-      node_js:
-        - "8"
-      script:
-        -  npm run test-eslint
+  - language: ruby
+    before_install:
+    - gem install bundler
+    rvm:
+    - 2.5.1@launch-base --create
+    install:
+    - bin/setup
+    script:
+    - bin/ci
+    addons:
+      chrome: stable
+  - language: node_js
+    node_js:
+    - '8'
+    script:
+    - npm run test-eslint
+deploy:
+  provider: rubygems
+  api_key:
+    secure: ALQNg1yAL4LoeLAp7aIQHme8YPAgNSVg1wDrOeaq/mqynIdlpFiG4zrlBi77zmvbwU+JU5lmUbPL4jgwT5SLRHDBO9Uqe50R9UElstQVQeRfhgLR+molOFc/hL8zCfybI2CmVvFDOf2E5hb/qqx6WDyhcGtU/ICwfNAK6nIhyO0DbznQTL0QSHJchQXvJ0TeddoouLqq/acEsNFvuONktbPM2zkCPOz5TzrLoycm0z1c/0tEJ6Ms2hi8pG+8EzpdC8sbEgOJ2hfzsSnHOZGKZdejCwwEsF9G/Mrc2MNrGxR8G/c2fWpQdn6AnvFsC3FFs+T/NGQuCVL4dgE0qfV7JRFURUndTd91AG51HBKPerYQUwIXgKfwPAz1O+GPxC6GGjLClJidKrNC0DtVfiSeahBacQ3F4+cONFtMAqeQTUHfVKBBUExex/tSBBA9i6STZYUigKitB2FmJF9xfeeV231iX/w9bQX1KRqwakTJ5eE+P3fNY5V0ljUg5j6uT0I9nOTt5JpohsbcbdEHzDPEUIEVNqondDpRhxfrAS9nrdTRcuUOx2MwnbNGtlOOvCHWqq89MSxzEm9pYgckCoaVEvOzgbZeD46Nz1WBjZIa2L1hgKZXzPN1/ONYJ7nsSBEngTZfmhhx1bGaIJrYmC0lPHoj2+os64MvrWM8PF/P2P0=
+  gem: launch_base
+  on:
+    branch: master
+    tags: true
+    repo: kabisa/launch-base
