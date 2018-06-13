@@ -4,6 +4,10 @@ module LaunchBase
   class Plugin < Thor
     include Thor::Actions
 
+    def self.method_added(method_sym)
+      super unless method_sym == :install
+    end
+
     def touch(file_path)
       full_path = File.join(destination_root, file_path)
       FileUtils.touch(full_path)
