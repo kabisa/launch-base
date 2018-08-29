@@ -32,11 +32,7 @@ module LaunchBase
     end
 
     def self.plugin_name
-      class_name
-        .gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
-        .gsub(/([a-z\d])([A-Z])/, '\1_\2')
-        .tr('-', '_')
-        .downcase
+      to_snake_case(class_name)
     end
 
     def self.command_line_flag
@@ -47,6 +43,14 @@ module LaunchBase
       name
         .split('::')
         .last
+    end
+
+    def self.to_snake_case(str)
+      str
+        .gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+        .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+        .tr('-', '_')
+        .downcase
     end
   end
 end
