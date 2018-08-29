@@ -14,20 +14,25 @@ module LaunchBase
       register(CLI::Add, 'add', 'add', 'Add additional modules')
 
       desc 'update', "update #{LaunchBase}"
+
       long_desc <<-LONGDESC
         `#{@package_name} update` triggers Bundler to update the #{LaunchBase} gem
       LONGDESC
+
       def update
         run 'bundle update launch_base --conservative'
       end
 
       desc 'new', "Create a new #{LaunchBase} project"
+
       long_desc <<-LONGDESC
         `#{@package_name} new [project-path]` creates a new rails project with Kabisa preferences.
       LONGDESC
+
       Plugin.each_plugin do |plugin_name, _plugin|
         option "with-#{plugin_name.tr('_', '-')}", type: :boolean, default: false
       end
+
       def new(project_path)
         installed_rails_version = Utilities.get_rails_version
 
