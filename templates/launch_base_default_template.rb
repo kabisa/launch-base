@@ -32,6 +32,7 @@ gem_group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'listen'
+  gem 'rubocop'
 end
 
 gem_group :test do
