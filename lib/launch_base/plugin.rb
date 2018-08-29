@@ -39,6 +39,10 @@ module LaunchBase
         .downcase
     end
 
+    def self.command_line_flag
+      "with-#{plugin_name.tr('_', '-')}"
+    end
+
     def self.class_name
       name
         .split('::')

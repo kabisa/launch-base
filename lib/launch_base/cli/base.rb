@@ -29,8 +29,8 @@ module LaunchBase
         `#{@package_name} new [project-path]` creates a new rails project with Kabisa preferences.
       LONGDESC
 
-      Plugin.each_plugin do |plugin_name, _plugin|
-        option "with-#{plugin_name.tr('_', '-')}", type: :boolean, default: false
+      Plugin.each_plugin do |_plugin_name, plugin|
+        option plugin.command_line_flag, type: :boolean, default: false
       end
 
       def new(project_path)
@@ -61,8 +61,8 @@ module LaunchBase
       end
 
       def install_modules(project_path, options)
-        Plugin.each_plugin do |plugin_name, plugin|
-          if options["with-#{plugin_name.tr('_', '-')}"]
+        Plugin.each_plugin do |_plugin_name, plugin|
+          if options[plugin.command_line_flag]
             say "Install #{plugin.class_name} module"
             plugin.new([], {}, destination_root: project_path).install
           end
