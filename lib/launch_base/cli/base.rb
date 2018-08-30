@@ -39,7 +39,7 @@ module LaunchBase
         if installed_rails_version
           if Utilities.rails_up_to_date?(installed_rails_version)
             run "rails new #{project_path} -m #{Utilities.gem_home}/templates/launch_base_default_template.rb"
-            install_modules(project_path, options)
+            Base.install_modules(project_path, options)
           else
             say "Your current installation of Rails is outdated (#{installed_rails_version}). "\
                 "Please upgrade to Rails #{RAILS_VERSION}"
@@ -54,19 +54,18 @@ module LaunchBase
         super
       end
 
+      def self.install_modules(project_path, options)
+        Plugin.each_plugin do |_plugin_name, plugin|
+          if options[plugin.command_line_flag]
+            plugin.install(destination_root: project_path)
+          end
+        end
+      end
+
       private
 
       def show_banner
         say "\u{1f680} Kabisa #{LaunchBase}\n\n"
-      end
-
-      def install_modules(project_path, options)
-        Plugin.each_plugin do |_plugin_name, plugin|
-          if options[plugin.command_line_flag]
-            say "Install #{plugin.class_name} module"
-            plugin.new([], {}, destination_root: project_path).install
-          end
-        end
       end
     end
   end

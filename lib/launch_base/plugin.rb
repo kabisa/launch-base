@@ -13,6 +13,16 @@ module LaunchBase
       FileUtils.touch(full_path)
     end
 
+    def run_install
+      say "Install #{class_name} module"
+      install
+      say "Successfully installed #{class_name} module"
+    end
+
+    def self.install(destination_root:)
+      new([], {}, destination_root: destination_root).run_install
+    end
+
     def self.description
       to_s
     end
@@ -37,6 +47,10 @@ module LaunchBase
 
     def self.command_line_flag
       "with-#{plugin_name.tr('_', '-')}"
+    end
+
+    def class_name
+      self.class.class_name
     end
 
     def self.class_name
