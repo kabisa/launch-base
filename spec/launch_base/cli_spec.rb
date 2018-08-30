@@ -1,15 +1,25 @@
-describe LaunchBase::CLI do
+describe LaunchBase::CLI::Base do
   describe 'new' do
     it 'generates a new app using the template' do
-      expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return('Rails 5.2.0')
-      expect_any_instance_of(LaunchBase::CLI).to receive(:run).with(/rails new foobar.+launch_base_default_template.rb/)
+      stub_installed_rails_version('Rails 5.2.0')
+      expect_any_instance_of(cli_base_class).to receive(:run).with(/rails new foobar.+launch_base_default_template.rb/)
 
       invoke_command 'new', 'foobar'
     end
 
+    context 'when passing --with-sidekiq' do
+      it 'installs sidekiq' do
+        stub_installed_rails_version('Rails 5.2.0')
+        expect_any_instance_of(cli_base_class).to receive(:run).with(/rails new/)
+        expect_any_instance_of(LaunchBase::Plugins::Sidekiq).to receive(:install)
+
+        invoke_command 'new', 'foobar', '--with-sidekiq'
+      end
+    end
+
     context 'when no installation of rails can be found' do
       it 'shows a warning rails should be installed' do
-        expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return ''
+        stub_installed_rails_version('')
 
         output = invoke_command 'new', 'foobar'
 
@@ -19,7 +29,7 @@ describe LaunchBase::CLI do
 
     context 'the installation of rails is outdated' do
       it 'shows a warning rails should be updated' do
-        expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return "Rails 5.1.3\n"
+        stub_installed_rails_version("Rails 5.1.3\n")
 
         output = invoke_command 'new', 'foobar'
 
@@ -28,9 +38,26 @@ describe LaunchBase::CLI do
     end
   end
 
+  describe 'add' do
+    it 'adds Sidekiq' do
+      expect_any_instance_of(LaunchBase::Plugin).to receive(:run).with('bundle install')
+
+      within_temp_test_directory do
+        create_file 'Gemfile'
+        create_file 'Procfile'
+
+        invoke_command 'add', 'sidekiq'
+
+        expect_file_contents 'Gemfile', "gem 'sidekiq'"
+        expect_dir_exists 'app/workers'
+        expect_file_contents 'Procfile', 'bundle exec sidekiq'
+      end
+    end
+  end
+
   describe 'update' do
     it 'runs `bundle update launch_base`' do
-      expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base --conservative')
+      expect_any_instance_of(cli_base_class).to receive(:system).with('bundle update launch_base --conservative')
 
       invoke_command 'update'
     end
@@ -53,7 +80,7 @@ describe LaunchBase::CLI do
 
   describe 'lint update' do
     it 'updates the gem and installs the linter configuration files' do
-      expect_any_instance_of(LaunchBase::CLI).to receive(:system).with('bundle update launch_base --conservative')
+      expect_any_instance_of(cli_base_class).to receive(:system).with('bundle update launch_base --conservative')
 
       within_temp_test_directory do
         invoke_command 'lint', 'update'
@@ -72,5 +99,9 @@ describe LaunchBase::CLI do
 
       expect(output).to match(/Kabisa LaunchBase/i)
     end
+  end
+
+  def stub_installed_rails_version(version = "Rails 5.2.0\n")
+    expect(LaunchBase::Utilities).to receive(:`).with(/rails -v/).and_return(version)
   end
 end

@@ -6,4 +6,4 @@ $LOAD_PATH << source_path
 
 require 'launch_base'
 
-LaunchBase::CLI.start
+LaunchBase::CLI::Base.start

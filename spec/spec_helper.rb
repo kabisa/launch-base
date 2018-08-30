@@ -3,7 +3,7 @@ SimpleCov.start
 
 require 'bundler/setup'
 require 'launch_base'
-require './spec/support/launch_base_test_helpers'
+require './spec/support/test_helpers'
 
 Dir[Pathname.new(__dir__).join('support/**/*.rb')].each { |f| require f }
 
@@ -12,9 +12,9 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
   config.expose_dsl_globally = true
 
-  config.include LaunchBaseTestHelpers
+  config.include TestHelpers
 
-  if Class.new { include LaunchBaseTestHelpers }.new.dummy_app_path_not_set?
+  if Class.new { include TestHelpers }.new.dummy_app_path_not_set?
     config.filter_run_excluding needs_dummy_app: true
   end
 

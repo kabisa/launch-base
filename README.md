@@ -29,8 +29,10 @@ Or install it yourself as:
 ## Usage
 
 ```
+launch_base add sidekiq         # Add Sidekiq gem and configuration to your app
 launch_base help [COMMAND]      # Describe available commands or one specific command
 launch_base new                 # Create a new LaunchBase project (Rails 5.1 or higher is required)
+launch_base new --with-sidekiq  # Create a new LaunchBase project including Sidekiq support
 launch_base update              # update LaunchBase
 launch_base lint install        # install lint configuration files
 launch_base lint update         # update gem and reinstall lint configuration files

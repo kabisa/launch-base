@@ -82,6 +82,10 @@ Style/MethodCalledOnDoEndBlock:
 Style/Next:
   Enabled: false
 
+# Do not enforce the use of modifiers over conditionals when they would fit on one line
+Style/IfUnlessModifier:
+  Enabled: false
+
 # Complex inline ifs need ()
 Style/TernaryParentheses:
   EnforcedStyle: require_parentheses_when_complex
