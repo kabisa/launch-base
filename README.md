@@ -90,8 +90,8 @@ You can also run `bin/console` for an interactive prompt that will allow you to 
 
 To install this gem onto your local machine, run `bundle exec rake install`.
 To release a new version, update the version number in `version.rb`,
-and then run `bundle exec rake release`, which will create a git tag for the version,
-push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+and then run `bundle exec gem tag --push`, which will create and push a git tag for the version.
+Travis CI will automatically build and publish the gem.
 
 ## Contributing
 
