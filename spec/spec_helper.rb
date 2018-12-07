@@ -1,5 +1,8 @@
 require 'simplecov'
-SimpleCov.start
+
+SimpleCov.start do
+  add_filter %r{^/spec/support/}
+end
 
 require 'bundler/setup'
 require 'launch_base'
