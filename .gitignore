@@ -3,3 +3,4 @@
 /node_modules
 .rspec_status
 /tmp/
+Gemfile.lock
