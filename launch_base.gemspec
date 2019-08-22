@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.executables   = ['launch_base']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'bundler', '>= 2.0.2'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'fuubar', '~> 2.3'
