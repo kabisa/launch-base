@@ -5,9 +5,9 @@ matrix:
   include:
   - language: ruby
     before_install:
-    - gem install bundler
+    - gem install bundler -v '2.0.2'
     rvm:
-    - 2.5.1@launch-base --create
+    - 2.6.3@launch-base --create
     install:
     - bin/setup
     script:
